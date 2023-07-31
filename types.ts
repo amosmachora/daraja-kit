@@ -11,10 +11,7 @@ export interface InitializeAppResponse {
 }
 
 export interface ContextData {
-  initializeAppResponse: InitializeAppResponse | null;
-  setInitializeAppResponse: React.Dispatch<
-    React.SetStateAction<InitializeAppResponse | null>
-  >;
+  accessToken: string | null;
 }
 
 /**
@@ -57,4 +54,9 @@ export interface ScannableQrParams {
   Size: string;
 }
 
-export interface ScannableQrCodeResponse {}
+export interface ScannableQrCodeResponse {
+  ResponseCode: string;
+  RequestID: string;
+  ResponseDescription: string;
+  QRCode: string;
+}

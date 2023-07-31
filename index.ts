@@ -1,7 +1,15 @@
+import "./index.css";
 import axios from "axios";
-import { InitOptions, ScannableQrParams } from "./types";
+import {
+  InitializeAppResponse,
+  InitOptions,
+  ScannableQrCodeResponse,
+  ScannableQrParams,
+} from "./types";
 
-export const initializeApp = async (initOptions: InitOptions) => {
+export const initializeApp = async (
+  initOptions: InitOptions
+): Promise<InitializeAppResponse> => {
   const { consumerKey, consumerSecret } = initOptions;
   const credentials = `${consumerKey}:${consumerSecret}`;
   const encodedCredentials = btoa(credentials);
@@ -15,7 +23,7 @@ export const initializeApp = async (initOptions: InitOptions) => {
         },
       }
     );
-    return res;
+    return res.data;
   } catch (err) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
@@ -24,5 +32,23 @@ export const initializeApp = async (initOptions: InitOptions) => {
 };
 
 export const getScannableQRCode = async (
-  scannableQrParams: ScannableQrParams
-) => {};
+  scannableQrParams: ScannableQrParams,
+  accessToken: string
+) => {
+  try {
+    const res: ScannableQrCodeResponse = await axios.post(
+      "https://sandbox.safaricom.co.ke/mpesa/qrcode/v1/generate",
+      scannableQrParams,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    return res;
+  } catch (err) {
+    throw new Error(
+      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
+    );
+  }
+};
