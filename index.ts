@@ -5,6 +5,10 @@ import {
   InitOptions,
   ScannableQrCodeResponse,
   ScannableQrParams,
+  StateOfALNMOnlinePaymentBody,
+  StateOfALNMOnlinePaymentResponse,
+  STKPushBody,
+  STKPushResponse,
 } from "./types";
 
 export const initializeApp = async (
@@ -34,7 +38,7 @@ export const initializeApp = async (
 export const getScannableQRCode = async (
   scannableQrParams: ScannableQrParams,
   accessToken: string
-) => {
+): Promise<ScannableQrCodeResponse> => {
   try {
     const res: ScannableQrCodeResponse = await axios.post(
       "https://sandbox.safaricom.co.ke/mpesa/qrcode/v1/generate",
@@ -45,6 +49,55 @@ export const getScannableQRCode = async (
         },
       }
     );
+    return res;
+  } catch (err) {
+    throw new Error(
+      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
+    );
+  }
+};
+
+export const STKPush = async (
+  stkPushBody: STKPushBody,
+  accessToken: string
+): Promise<STKPushResponse> => {
+  try {
+    const res: STKPushResponse = await axios.post(
+      "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest",
+      stkPushBody,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    return res;
+  } catch (err) {
+    throw new Error(
+      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
+    );
+  }
+};
+
+/**
+ * Use this API to check the status of a Lipa Na M-Pesa Online Payment.
+ */
+export const stateOfALNMOnlinePayment = async (
+  stateOfALNMOnlinePaymentBody: StateOfALNMOnlinePaymentBody,
+  accessToken: string
+): Promise<StateOfALNMOnlinePaymentResponse> => {
+  try {
+    const res: StateOfALNMOnlinePaymentResponse = await axios.post(
+      "https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query",
+      stateOfALNMOnlinePaymentBody,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
     return res;
   } catch (err) {
     throw new Error(
