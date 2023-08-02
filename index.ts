@@ -1,8 +1,12 @@
 import "./index.css";
 import axios from "axios";
 import {
+  B2CRequestBody,
+  B2CRequestResponse,
   InitializeAppResponse,
   InitOptions,
+  RegisterUrlBody,
+  RegisterUrlResponse,
   ScannableQrCodeResponse,
   ScannableQrParams,
   StateOfALNMOnlinePaymentBody,
@@ -98,6 +102,51 @@ export const stateOfALNMOnlinePayment = async (
       }
     );
 
+    return res;
+  } catch (err) {
+    throw new Error(
+      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
+    );
+  }
+};
+
+export const C2BRegisterURL = async (
+  registerUrlBody: RegisterUrlBody,
+  accessToken: string
+): Promise<RegisterUrlResponse> => {
+  try {
+    const res: RegisterUrlResponse = await axios.post(
+      "https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl",
+      registerUrlBody,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    return res;
+  } catch (err) {
+    throw new Error(
+      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
+    );
+  }
+};
+
+export const businessToCustomer = async (
+  b2CBody: B2CRequestBody,
+  accessToken: string
+): Promise<B2CRequestResponse> => {
+  try {
+    const res: B2CRequestResponse = await axios.post(
+      "https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest",
+      b2CBody,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
     return res;
   } catch (err) {
     throw new Error(

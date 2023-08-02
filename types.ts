@@ -443,3 +443,496 @@ export interface STKPushErrorCallbackBody {
     };
   };
 }
+
+/**
+ * Request Parameter Definition
+ * @interface RegisterUrlBody
+ */
+export interface RegisterUrlBody {
+  /**
+   * This is the URL that receives the validation request from the API upon payment submission.
+   * The validation URL is only called if the external validation on the registered shortcode is enabled.
+   * (By default External Validation is disabled).
+   * @type {string}
+   * @example "https://mydomain.com/validation"
+   */
+  ValidationURL?: string;
+
+  /**
+   * This is the URL that receives the confirmation request from API upon payment completion.
+   * @type {string}
+   * @example "https://mydomain.com/confirmation"
+   */
+  ConfirmationURL?: string;
+
+  /**
+   * This parameter specifies what is to happen if for any reason the validation URL is not reachable.
+   * Note that, this is the default action value that determines what M-PESA will do in the scenario that your endpoint is unreachable or is unable to respond on time.
+   * Only two values are allowed: Completed or Cancelled.
+   * Completed means M-PESA will automatically complete your transaction, whereas Cancelled means M-PESA will automatically cancel the transaction,
+   * in the event M-PESA is unable to reach your Validation URL.
+   * @type {"Cancelled" | "Completed"}
+   * @example "Cancelled"
+   * @example "Completed"
+   */
+  ResponseType: "Cancelled" | "Completed";
+
+  /**
+   * Usually, a unique number is tagged to an M-PESA pay bill/till number of the organization.
+   * @type {string}
+   * @example "123456"
+   */
+  ShortCode: string;
+}
+
+/**
+ * Response Parameters Definition
+ * @interface RegisterUrlResponse
+ */
+export interface RegisterUrlResponse {
+  /**
+   * This is a global unique identifier for the transaction request returned by the API proxy upon successful request submission.
+   * @type {string}
+   * @example "abc123"
+   */
+  OriginatorCoversationID: string;
+
+  /**
+   * It indicates whether Mobile Money accepts the request or not.
+   * @type {string}
+   * @example "0"
+   */
+  ResponseCode: string;
+
+  /**
+   * This is the status of the request.
+   * @type {string}
+   * @example "success"
+   */
+  ResponseDescription: string;
+}
+
+/**
+ * Results Parameter Definition
+ * @interface ValidationRequest
+ */
+export interface ValidationOrConfirmationRequest {
+  /**
+   * The transaction type specified during the payment request.
+   * @type {string}
+   * @example "Buy Goods or Pay Bill"
+   */
+  TransactionType: string;
+
+  /**
+   * This is the unique M-Pesa transaction ID for every payment request.
+   * This is sent to both the call-back messages and a confirmation SMS sent to the customer.
+   * @type {string}
+   * @example "LHG31AA5TX"
+   */
+  TransID: string;
+
+  /**
+   * This is the Timestamp of the transaction, normally in the format of YEAR+MONTH+DATE+HOUR+MINUTE+SECOND (YYYYMMDDHHMMSS).
+   * Each part should be at least two digits apart from the year which takes four digits.
+   * @type {string}
+   * @example "20170813154301"
+   */
+  TransTime: string;
+
+  /**
+   * This is the amount transacted (normally a numeric value), money that the customer pays to the Shortcode.
+   * Only whole numbers are supported.
+   * @type {string}
+   * @example "100"
+   */
+  TransAmount: string;
+
+  /**
+   * This is the organization's shortcode (Paybill or Buygoods - a 5 to 6-digit account number)
+   * used to identify an organization and receive the transaction.
+   * @type {string}
+   * @example "654321"
+   */
+  BusinessShortCode: string;
+
+  /**
+   * This is the account number for which the customer is making the payment.
+   * This is only applicable to Customer PayBill Transactions.
+   * @type {string}
+   * @example "ABC123456"
+   */
+  BillRefNumber: string;
+
+  /**
+   * The current utility account balance of the payment-receiving organization shortcode.
+   * For validation requests, this field is usually blank whereas, for the confirmation message,
+   * the value represents the new balance after the payment has been received.
+   * @type {string}
+   * @example "30671"
+   */
+  OrgAccountBalance: string;
+
+  /**
+   * This is a transaction ID that the partner can use to identify the transaction.
+   * When a validation request is sent, the partner can respond with ThirdPartyTransID,
+   * and this will be sent back with the Confirmation notification.
+   * @type {string}
+   * @example "1234567890"
+   */
+  ThirdPartyTransID: string;
+
+  /**
+   * This is a masked mobile number of the customer making the payment.
+   * @type {string}
+   * @example "25470****149"
+   */
+  MSISDN: string;
+
+  /**
+   * The customer's first name is as per the M-Pesa register. This parameter can be empty.
+   * @type {string}
+   * @example "John"
+   */
+  FirstName: string;
+
+  /**
+   * The customer's middle name is as per the M-Pesa register. This parameter can be empty.
+   * @type {string}
+   * @example "Doe"
+   */
+  MiddleName: string;
+
+  /**
+   * The customer's last name is as per the M-Pesa register. This parameter can be empty.
+   * @type {string}
+   * @example "Smith"
+   */
+  LastName: string;
+}
+
+/**
+ * Validation Response - Expected from your validation URL.
+ * @interface ValidationResponse
+ */
+export interface ValidationResponse {
+  /**
+   * A code indicating whether to complete the transaction.
+   * 0(Zero) always means complete. Other values mean canceling the transaction,
+   * which also determines the customer notification SMS type.
+   * @type {string}
+   * @example "0"
+   */
+  ResultCode: string;
+
+  /**
+   * Short validation result description.
+   * @type {string}
+   * @example "Validation successful."
+   */
+  ResultDesc: string;
+
+  /**
+   * An optional value that can be used to identify the payment during a confirmation callback.
+   * If a value is set, it would be passed back in a confirmation callback.
+   * @type {string}
+   * @example "1234567890"
+   */
+  ThirdPartyTransID?: string;
+}
+
+/**
+ * Confirmation acknowledgment - Expected from your Confirmation URL.
+ * @interface ConfirmationResponse
+ */
+export interface ConfirmationResponse {
+  /**
+   * A code indicating the receipt status of the confirmation callback. Always 0(zero).
+   * @type {string}
+   * @example "0"
+   */
+  ResultCode: "0";
+
+  /**
+   * A short confirmation receipt description. Usually "Success".
+   * @type {string}
+   * @example "Success"
+   */
+  ResultDesc: string | "Success";
+}
+
+/**
+ * Validation or Confirmation Error Response.
+ * @interface ValidationOrConfirmationErrorResponse
+ */
+export interface ValidationOrConfirmationErrorResponse {
+  /**
+   * The error code indicating the reason for the rejection.
+   *
+   */
+  ResultCode:
+    | "C2B00011"
+    | "C2B00012"
+    | "C2B00013"
+    | "C2B00014"
+    | "C2B00015"
+    | "C2B00016";
+
+  /**
+   * The description of the error result. Always "Rejected" for error responses.
+   * @type {string}
+   * @example "Rejected"
+   */
+  ResultDesc: string | "Rejected";
+}
+
+/**
+ * Represents the request body for M-Pesa B2C (Business to Customer) transactions.
+ * @interface B2CRequestBody
+ */
+export interface B2CRequestBody {
+  /*
+  The username of the M-Pesa B2C account API operator.
+  NOTE: The access channel for this operator must be API, and the account must be in active status.
+  @type {string}
+  @example "initiator_1"
+  @example "John_Doe"
+  */
+  InitiatorName: string;
+  /**
+  
+  This is the value obtained after encrypting the API initiator password.
+  The process for encrypting the initiator password has been described under docs,
+  and an online encryption process is available under get test credential.
+  @type {string}
+  @example "32SzVdmCvjpmQfw3X2RK8UAv7xuhh304dXxFC5+3lslkk2TDJY/Lh6ESVwtqMxJzF7qA=="
+  */
+  SecurityCredential: string;
+  /**
+  
+  This is a unique command that specifies the B2C transaction type.
+  "SalaryPayment": Supports sending money to both registered and unregistered M-Pesa customers.
+  "BusinessPayment": A normal business to customer payment, supports only M-Pesa registered customers.
+  "PromotionPayment": A promotional payment to customers. The M-Pesa notification message is a congratulatory message. Supports only M-Pesa registered customers.
+  @type {string}
+  @example "SalaryPayment"
+  */
+  CommandID: string;
+  /**
+  
+  The amount of money being sent to the customer.
+  @type {number}
+  @example 30671
+  */
+  Amount: number;
+  /**
+  
+  This is the B2C organization shortcode from which the money is to be sent.
+  @type {number}
+  @example 123454
+  */
+  PartyA: number;
+  /**
+  
+  This is the customer mobile number to receive the amount.
+  The number should have the country code (254) without the plus sign.
+  @type {number}
+  @example 254722000000
+  */
+  PartyB: number;
+  /**
+  
+  Any additional information to be associated with the transaction.
+  @type {string}
+  @example "Payment for services"
+  */
+  Remarks: string;
+  /**
+  
+  This is the URL to be specified in your request that will be used by the API Proxy
+  to send a notification in case the payment request is timed out while awaiting processing in the queue.
+  @type {string}
+  @example "https://example.com/queue-timeout"
+  */
+  QueueTimeOutURL: string;
+  /**
+  
+  This is the URL to be specified in your request that will be used by M-Pesa to send a notification
+  upon processing of the payment request.
+  @type {string}
+  @example "https://example.com/payment-result"
+  */
+  ResultURL: string;
+  /**
+  
+  Any additional information to be associated with the transaction.
+  @type {string}
+  @example "Monthly salary payment"
+  */
+  Occasion: string;
+}
+
+/**
+ * @interface B2CRequestResponse
+ */
+export interface B2CRequestResponse {
+  /*
+  This is a global unique identifier for the transaction request returned by the API proxy upon successful request submission.
+  @type {string}
+  @example "29115-34620561-1"
+  */
+  OriginatorConversationID: string;
+  /**
+  
+  This is a global unique identifier for the transaction request returned by M-Pesa upon successful request submission.
+  @type {string}
+  @example "ws_CO_191220191020363925"
+  */
+  ConversationID: string;
+  /**
+  
+  This is the status of the request.
+  @type {string}
+  @example "Success"
+  */
+  ResponseDescription: string;
+}
+
+/**
+ * Represents the response body for M-Pesa B2C (Business to Customer) transaction request errors.
+ * @interface B2CRequestError
+ */
+export interface B2CRequestError {
+  /*
+  This is a unique requestID for the payment request.
+  @type {string}
+  @example "29115-34620561-1"
+  */
+  requestId: string;
+  /**
+  
+  This is a predefined code that indicates the reason for request failure. The error codes are defined in the Response Error Details.
+  @type {string}
+  @example "404.001.04"
+  */
+  errorCode: string;
+  /**
+  
+  This is a short descriptive message of the failure reason.
+  @type {string}
+  @example "Invalid Access Token"
+  */
+  errorMessage: string;
+}
+
+/**
+ * Represents the response result of the B2C transaction.
+ */
+export interface B2CRequestResult {
+  Result: {
+    /**
+     * This is a global unique identifier for the transaction request returned by the M-Pesa upon successful request submission.
+     */
+    ConversationId: string;
+    /**
+     * This is a global unique identifier for the transaction request returned by the API proxy upon successful request submission.
+     */
+    OriginatorConversationId: string;
+    /**
+     * This is a message from the API that gives the status of the request processing and usually maps to a specific result code value.
+     */
+    ResultDesc: string;
+    /**
+     * This is a status code that indicates whether the transaction was already sent to your listener. Usual value is 0.
+     */
+    ResultType: number;
+    /**
+     * This is a numeric status code that indicates the status of the transaction processing. 0 means success and any other code means an error occurred or the transaction failed.
+     */
+    ResultCode: number;
+    /**
+     * This is a unique M-PESA transaction ID for every payment request. Same value is sent to customer over SMS upon successful processing.
+     */
+    TransactionID: string;
+    /**
+     * This is a JSON object that holds more details for the transaction.
+     */
+    ResultParameters: {
+      /**
+       * This is a JSON array within the ResultParameters that holds additional transaction details as JSON objects.
+       */
+      ResultParameter: B2CResultParameter[];
+    };
+  };
+  /**
+   * This is a unique M-PESA transaction ID for every payment request. Same value is sent to customer over SMS upon successful processing. It is usually returned under the ResultParameter array.
+   */
+  TransactionReceipt: string;
+  /**
+   * This is the amount that was transacted. It is usually returned under the ResultParameter array.
+   */
+  TransactionAmount: number;
+  /**
+   * This is the available balance of the Working account under the B2C shortcode used in the transaction.
+   */
+  B2CWorkingAccountAvailableFunds: number;
+  /**
+   * This is the available balance of the Utility account under the B2C shortcode used in the transaction.
+   */
+  B2CUtilityAccountAvailableFunds: number;
+  /**
+   * This is the date and time that the transaction completed M-PESA.
+   */
+  TransactionCompletedDateTime: string;
+  /**
+   * This is the name and phone number of the customer who received the payment.
+   */
+  ReceiverPartyPublicName: string;
+  /**
+   * This is the available balance of the Charges Paid account under the B2C shortcode used in the transaction.
+   */
+  B2CChargesPaidAccountAvailableFunds: number;
+  /**
+   * This is a key that indicates whether the customer is a M-PESA registered customer or not.
+   * "Y" for Yes, "N" for No.
+   */
+  B2CRecipientIsRegisteredCustomer: "Y" | "N";
+}
+
+/**
+ * Interface representing the JSON objects within the ResultParameter array of the B2C request result.
+ */
+export interface B2CResultParameter {
+  /**
+   * Unique M-PESA transaction ID for every payment request. Same value is sent to customer over SMS upon successful processing.
+   */
+  TransactionReceipt: string;
+  /**
+   * Amount that was transacted.
+   */
+  TransactionAmount: number;
+  /**
+   * Available balance of the Working account under the B2C shortcode used in the transaction.
+   */
+  B2CWorkingAccountAvailableFunds: number;
+  /**
+   * Available balance of the Utility account under the B2C shortcode used in the transaction.
+   */
+  B2CUtilityAccountAvailableFunds: number;
+  /**
+   * Date and time that the transaction completed M-PESA.
+   */
+  TransactionCompletedDateTime: string;
+  /**
+   * Name and phone number of the customer who received the payment.
+   */
+  ReceiverPartyPublicName: string;
+  /**
+   * Available balance of the Charges Paid account under the B2C shortcode used in the transaction.
+   */
+  B2CChargesPaidAccountAvailableFunds: number;
+  /**
+   * Key that indicates whether the customer is a M-PESA registered customer or not ("Y" for Yes, "N" for No).
+   */
+  B2CRecipientIsRegisteredCustomer: "Y" | "N";
+}
