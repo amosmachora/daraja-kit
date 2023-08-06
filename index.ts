@@ -1,6 +1,8 @@
 import "./index.css";
 import axios from "axios";
 import {
+  AccountBalanceBody,
+  AccountBalanceResponse,
   B2CRequestBody,
   B2CRequestResponse,
   InitializeAppResponse,
@@ -165,6 +167,28 @@ export const getTransactionStatus = async (
     const res: TransactionStatusResponse = await axios.post(
       "https://sandbox.safaricom.co.ke/mpesa/transactionstatus/v1/query",
       transactionStatusBody,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    return res;
+  } catch (err) {
+    throw new Error(
+      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
+    );
+  }
+};
+
+export const getAccountBalance = async (
+  accountBalance: AccountBalanceBody,
+  accessToken: string
+): Promise<AccountBalanceResponse> => {
+  try {
+    const res: AccountBalanceResponse = await axios.post(
+      "https://sandbox.safaricom.co.ke/mpesa/accountbalance/v1/query",
+      accountBalance,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
