@@ -13,6 +13,8 @@ import {
   StateOfALNMOnlinePaymentResponse,
   STKPushBody,
   STKPushResponse,
+  TransactionStatusBody,
+  TransactionStatusResponse,
 } from "./types";
 
 export const initializeApp = async (
@@ -141,6 +143,28 @@ export const businessToCustomer = async (
     const res: B2CRequestResponse = await axios.post(
       "https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest",
       b2CBody,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    return res;
+  } catch (err) {
+    throw new Error(
+      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
+    );
+  }
+};
+
+export const getTransactionStatus = async (
+  transactionStatusBody: TransactionStatusBody,
+  accessToken: string
+): Promise<TransactionStatusResponse> => {
+  try {
+    const res: TransactionStatusResponse = await axios.post(
+      "https://sandbox.safaricom.co.ke/mpesa/transactionstatus/v1/query",
+      transactionStatusBody,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
