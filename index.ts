@@ -5,16 +5,22 @@ import {
   AccountBalanceResponse,
   B2CRequestBody,
   B2CRequestResponse,
+  BusinessRequestBody,
+  BusinessRequestResponse,
   InitializeAppResponse,
   InitOptions,
   RegisterUrlBody,
   RegisterUrlResponse,
+  ReverseC2BTransactionBody,
+  ReverseC2BTransactionResponse,
   ScannableQrCodeResponse,
   ScannableQrParams,
   StateOfALNMOnlinePaymentBody,
   StateOfALNMOnlinePaymentResponse,
   STKPushBody,
   STKPushResponse,
+  TaxRemittanceBody,
+  TaxRemittanceResponse,
   TransactionStatusBody,
   TransactionStatusResponse,
 } from "./types";
@@ -189,6 +195,94 @@ export const getAccountBalance = async (
     const res: AccountBalanceResponse = await axios.post(
       "https://sandbox.safaricom.co.ke/mpesa/accountbalance/v1/query",
       accountBalance,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    return res;
+  } catch (err) {
+    throw new Error(
+      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
+    );
+  }
+};
+
+export const reverseC2BTransaction = async (
+  body: ReverseC2BTransactionBody,
+  accessToken: string
+): Promise<ReverseC2BTransactionResponse> => {
+  try {
+    const res: ReverseC2BTransactionResponse = await axios.post(
+      "https://sandbox.safaricom.co.ke/mpesa/reversal/v1/request",
+      body,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    return res;
+  } catch (err) {
+    throw new Error(
+      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
+    );
+  }
+};
+
+export const remitTax = async (
+  body: TaxRemittanceBody,
+  accessToken: string
+): Promise<TaxRemittanceResponse> => {
+  try {
+    const res: TaxRemittanceResponse = await axios.post(
+      "https://sandbox.safaricom.co.ke/mpesa/b2b/v1/remittax",
+      body,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    return res;
+  } catch (err) {
+    throw new Error(
+      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
+    );
+  }
+};
+
+export const businessPaybill = async (
+  body: BusinessRequestBody,
+  accessToken: string
+): Promise<BusinessRequestResponse> => {
+  try {
+    const res: BusinessRequestResponse = await axios.post(
+      "https://sandbox.safaricom.co.ke/mpesa/b2b/v1/paymentrequest",
+      body,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    return res;
+  } catch (err) {
+    throw new Error(
+      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
+    );
+  }
+};
+
+export const businessBuyGoods = async (
+  body: BusinessRequestBody,
+  accessToken: string
+) => {
+  try {
+    const res: BusinessRequestResponse = await axios.post(
+      "https://sandbox.safaricom.co.ke/mpesa/b2b/v1/paymentrequest",
+      body,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,

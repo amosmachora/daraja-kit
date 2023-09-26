@@ -11,7 +11,7 @@ export const QRCodeDisplay = ({
   scannableQrParams: ScannableQrParams;
 }) => {
   const [qrString, setQrString] = useState<string | null>(null);
-  const { accessToken } = useReactDaraja();
+  const { accessToken, mode } = useReactDaraja();
 
   useEffect(() => {
     getScannableQRCode(scannableQrParams, accessToken!).then((res) =>
