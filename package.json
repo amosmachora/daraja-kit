@@ -2,7 +2,7 @@
   "name": "react-daraja",
   "version": "1.0.0",
   "description": "A react library for interacting with Safaricom`s daraja APIs",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "test"
   },
@@ -28,9 +28,11 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^1.4.0",
+    "base-64": "^1.0.0",
     "react": "^18.2.0"
   },
   "devDependencies": {
+    "@types/base-64": "^1.0.0",
     "@types/react": "^18.2.17",
     "tailwindcss": "^3.3.3"
   }

@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { initializeApp } from "..";
-import { ContextData } from "../types";
+import { BusinessShortCode, ContextData, STKPushBody } from "../types";
 
 export const darajaAPIProvider = createContext<ContextData>({
   accessToken: null,
   mode: "development",
+  businessShortCode: null,
 });
 
 export const ReactDarajaProvider = ({
@@ -12,11 +13,13 @@ export const ReactDarajaProvider = ({
   consumerKey,
   consumerSecret,
   mode,
+  businessShortCode,
 }: {
   children: React.ReactNode;
   consumerKey: string;
   consumerSecret: string;
   mode: "development" | "production";
+  businessShortCode: BusinessShortCode;
 }) => {
   const [accessToken, setAccessToken] = useState<string | null>(null);
 
@@ -49,6 +52,7 @@ export const ReactDarajaProvider = ({
       value={{
         accessToken,
         mode,
+        businessShortCode,
       }}
     >
       {children}

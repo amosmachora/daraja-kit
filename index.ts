@@ -24,6 +24,8 @@ import {
   TransactionStatusBody,
   TransactionStatusResponse,
 } from "./types";
+import { useReactDaraja } from "./hooks/useReactDaraja";
+import { generatePassword, generateTimestamp } from "./util/utils";
 
 export const initializeApp = async (
   initOptions: InitOptions
@@ -72,10 +74,29 @@ export const getScannableQRCode = async (
 };
 
 export const STKPush = async (
-  stkPushBody: STKPushBody,
-  accessToken: string
+  body: Omit<
+    STKPushBody,
+    "BusinessShortCode" | "PartyB" | "Timestamp" | "Password"
+  >
 ): Promise<STKPushResponse> => {
   try {
+    const { accessToken, businessShortCode, mode } = useReactDaraja();
+    if (!accessToken) {
+      throw new Error("Access token is not available");
+    }
+
+    const timestamp = generateTimestamp();
+    // TODO get passkey
+    const password = generatePassword(businessShortCode!, "", timestamp);
+
+    const stkPushBody: STKPushBody = {
+      ...body,
+      BusinessShortCode: businessShortCode!,
+      PartyB: businessShortCode!,
+      Timestamp: timestamp,
+      Password: password,
+    };
+
     const res: STKPushResponse = await axios.post(
       "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest",
       stkPushBody,
@@ -296,3 +317,5 @@ export const businessBuyGoods = async (
     );
   }
 };
+
+export { ReactDarajaProvider } from "./hooks/useReactDaraja";

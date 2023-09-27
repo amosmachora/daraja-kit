@@ -1,5 +1,11 @@
 import React from "react";
 
+export interface ContextData {
+  accessToken: string | null;
+  mode: "development" | "production";
+  businessShortCode: BusinessShortCode | null;
+}
+
 export type InitOptions = {
   consumerKey: string;
   consumerSecret: string;
@@ -10,10 +16,13 @@ export interface InitializeAppResponse {
   expires_in: string;
 }
 
-export interface ContextData {
-  accessToken: string | null;
-  mode: "development" | "production";
-}
+/**
+ * Type alias for the organization's shortcode (Paybill or Buygoods - A 5 to 6-digit account number)
+ * used to identify an organization and receive the transaction.
+ * @typedef {string} BusinessShortCode
+ * @example "654321"
+ */
+export type BusinessShortCode = string;
 
 /**
  * Scannable QR Parameters
@@ -100,17 +109,6 @@ export interface StateOfALNMOnlinePaymentBody {
 }
 
 /**
- * Response Parameter Definition
- * @typedef {Object} StateOfALNMOnlinePaymentResponse
- * @property {string} ResponseCode - This is a numeric status code that indicates the status of the transaction submission. 0 means successful submission and any other code means an error occurred.
- * @property {string} ResponseDescription - Response description is an acknowledgment message from the API that gives the status of the request submission usually maps to a specific ResponseCode value. It can be a "Success" submission message or an error description.
- * @property {string} MerchantRequestID - This is a global unique Identifier for any submitted payment request.
- * @property {string} CheckoutRequestID - This is a global unique identifier of the processed checkout transaction request.
- * @property {string} ResultCode - This is a numeric status code that indicates the status of the transaction processing. 0 means successful processing and any other code means an error occurred or the transaction failed.
- * @property {string} ResultDesc - Result description is a message from the API that gives the status of the request processing, usually maps to a specific ResultCode value. It can be a success processing message or an error description message.
- */
-
-/**
  * @type {StateOfALNMOnlinePaymentResponse}
  */
 export interface StateOfALNMOnlinePaymentResponse {
@@ -166,13 +164,7 @@ export interface StateOfALNMOnlinePaymentResponse {
  * @interface STKPushBody
  */
 export interface STKPushBody {
-  /**
-   * This is the organization's shortcode (Paybill or Buygoods - A 5 to 6-digit account number)
-   * used to identify an organization and receive the transaction.
-   * @type {string}
-   * @example "654321"
-   */
-  BusinessShortCode: string;
+  BusinessShortCode: BusinessShortCode;
 
   /**
    * This is the password used for encrypting the request sent: A base64 encoded string.
@@ -245,7 +237,7 @@ export interface STKPushBody {
    * @type {string}
    * @example "ABC123456789"
    */
-  AccountReference: string;
+  AccountReference?: string;
 
   /**
    * This is any additional information/comment that can be sent along with the request from your system.
