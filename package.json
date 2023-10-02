@@ -2,14 +2,14 @@
   "name": "react-daraja",
   "version": "1.0.0",
   "description": "A react library for interacting with Safaricom`s daraja APIs",
-  "main": "dist/index.ts",
+  "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "test",
     "build": "tsup index.ts --format cjs,esm --dts",
     "lint": "tsc",
-    "release": "pnpm publish"
+    "release": "pnpm run build && changeset publish"
   },
   "repository": {
     "type": "git",
