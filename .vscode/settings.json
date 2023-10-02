@@ -2,6 +2,7 @@
   "cSpell.words": [
     "ALNM",
     "Buygoods",
+    "codepaths",
     "Coversation",
     "Cvjpm",
     "daraja",
@@ -12,8 +13,10 @@
     "Occassion",
     "Paybill",
     "Pesa",
+    "pnpm",
     "Safaricom",
     "shortcode",
-    "Testapi"
+    "Testapi",
+    "tsup"
   ]
 }
