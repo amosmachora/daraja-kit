@@ -21,6 +21,9 @@
     "daraja2.0",
     "safaricom"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Amos Machora",
   "license": "MIT",
   "bugs": {
