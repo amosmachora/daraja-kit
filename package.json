@@ -8,7 +8,8 @@
   "scripts": {
     "test": "test",
     "build": "tsup index.ts --format cjs,esm --dts",
-    "lint": "tsc"
+    "lint": "tsc",
+    "release": "pnpm publish"
   },
   "repository": {
     "type": "git",
