@@ -44,7 +44,7 @@ export const initializeApp = async (
       }
     );
     return res.data;
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
     );
@@ -66,7 +66,7 @@ export const getScannableQRCode = async (
       }
     );
     return res;
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
     );
@@ -87,7 +87,9 @@ export const STKPush = async (
 
     const timestamp = generateTimestamp();
     // TODO get passkey
-    const password = generatePassword(businessShortCode!, "", timestamp);
+    // const password = generatePassword(businessShortCode!, "", timestamp);
+    const password =
+      "PJfngGqxieuYDC2MyqjvLkEjSFSDgZlHUuGjKpjUfhVH00XgCYaLlUDEgCoBTMlzEBoirlBEVHcHzywhz/i7Jo+geGMAd+Fn4sCy+qCg5ZfnbyGYKEL72QjSIaTcFmRvmVVu+XN9iRY5x4OSkQgM+wmyrfycXArjwiTo2odVlP9PUnEsuCv/R3++MZEo1J6tFfKa+1KjTuoO3ils8CDVQQbfeR+bstByJ5F21H+8vtpZN1yjIqH6Bie9/Hxgy5XNXRdAPk6YSQ//qUFvi0eHkvlFwoXMPVhI5NTlOP2S6OyFCGhkOjZcUWukydq5IDGftL7/DeEdlAWU8xlmdXjDUg==";
 
     const stkPushBody: STKPushBody = {
       ...body,
@@ -108,7 +110,7 @@ export const STKPush = async (
     );
 
     return res;
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
     );
@@ -134,7 +136,7 @@ export const stateOfALNMOnlinePayment = async (
     );
 
     return res;
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
     );
@@ -157,7 +159,7 @@ export const C2BRegisterURL = async (
     );
 
     return res;
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
     );
@@ -179,7 +181,7 @@ export const businessToCustomer = async (
       }
     );
     return res;
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
     );
@@ -201,7 +203,7 @@ export const getTransactionStatus = async (
       }
     );
     return res;
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
     );
@@ -223,7 +225,7 @@ export const getAccountBalance = async (
       }
     );
     return res;
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
     );
@@ -245,7 +247,7 @@ export const reverseC2BTransaction = async (
       }
     );
     return res;
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
     );
@@ -267,7 +269,7 @@ export const remitTax = async (
       }
     );
     return res;
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
     );
@@ -289,7 +291,7 @@ export const businessPaybill = async (
       }
     );
     return res;
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
     );
@@ -311,7 +313,7 @@ export const businessBuyGoods = async (
       }
     );
     return res;
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
     );

@@ -24,7 +24,7 @@ export const ReactDarajaProvider = ({
   const [accessToken, setAccessToken] = useState<string | null>(null);
 
   useEffect(() => {
-    let intervalId = 0;
+    let intervalId: NodeJS.Timeout;
 
     const init = async () => {
       const { access_token, expires_in } = await initializeApp({
