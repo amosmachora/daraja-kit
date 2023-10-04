@@ -1,7 +1,7 @@
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import { getScannableQRCode } from "..";
+import { GetScannableQRCode } from "..";
 import { useReactDaraja } from "../hooks/useReactDaraja";
 import { ScannableQrParams } from "../types";
 
@@ -14,7 +14,7 @@ export const QRCodeDisplay = ({
   const { accessToken, mode } = useReactDaraja();
 
   useEffect(() => {
-    getScannableQRCode(scannableQrParams, accessToken!).then((res) =>
+    GetScannableQRCode(scannableQrParams, accessToken!).then((res) =>
       setQrString(res.QRCode)
     );
   }, []);
