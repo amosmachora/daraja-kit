@@ -1,5 +1,11 @@
 # react-daraja
 
+## 1.0.2
+
+### Patch Changes
+
+- 952ea30: Fixed minor bugs. Still on development mode
+
 ## 1.0.1
 
 ### Patch Changes
