@@ -1,5 +1,11 @@
 # react-daraja
 
+## 1.0.3
+
+### Patch Changes
+
+- e7d7c9c: converted STKPush and scannableQRCode to hooks
+
 ## 1.0.2
 
 ### Patch Changes
