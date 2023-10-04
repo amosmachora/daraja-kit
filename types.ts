@@ -4,6 +4,8 @@ export interface ContextData {
   accessToken: string | null;
   mode: "development" | "production";
   businessShortCode: BusinessShortCode | null;
+  baseURL: string;
+  productionPassKey: string | null;
 }
 
 export type InitOptions = {

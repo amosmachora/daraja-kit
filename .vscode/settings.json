@@ -1,5 +1,6 @@
 {
   "cSpell.words": [
+    "accountbalance",
     "ALNM",
     "Buygoods",
     "codepaths",
@@ -9,15 +10,24 @@
     "fontawesome",
     "fortawesome",
     "Lipa",
+    "mpesa",
     "MSISDN",
     "Occassion",
     "Paybill",
+    "paymentrequest",
     "Pesa",
     "pnpm",
+    "processrequest",
+    "qrcode",
+    "registerurl",
+    "remittax",
     "Safaricom",
     "shortcode",
+    "stkpush",
+    "stkpushquery",
     "tailwindcss",
     "Testapi",
+    "transactionstatus",
     "tsup"
   ]
 }
