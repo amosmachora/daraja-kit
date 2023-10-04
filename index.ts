@@ -53,72 +53,6 @@ export const InitializeApp = async (
   }
 };
 
-export const GetScannableQRCode = async (
-  scannableQrParams: ScannableQrParams,
-  accessToken: string
-): Promise<ScannableQrCodeResponse> => {
-  const { baseURL } = useReactDaraja();
-  try {
-    const res: ScannableQrCodeResponse = await axios.post(
-      `${baseURL}/mpesa/qrcode/v1/generate`,
-      scannableQrParams,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-    return res;
-  } catch (err: any) {
-    throw new Error(
-      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
-    );
-  }
-};
-
-export const STKPush = async (
-  body: Omit<
-    STKPushBody,
-    "BusinessShortCode" | "PartyB" | "Timestamp" | "Password"
-  >
-): Promise<STKPushResponse> => {
-  try {
-    const { accessToken, businessShortCode, baseURL, mode, productionPassKey } =
-      useReactDaraja();
-
-    const timestamp = generateTimestamp();
-
-    const password =
-      mode === "development"
-        ? "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMTYwMjE2MTY1NjI3"
-        : generatePassword(businessShortCode!, productionPassKey!, timestamp);
-
-    const stkPushBody: STKPushBody = {
-      ...body,
-      BusinessShortCode: businessShortCode!,
-      PartyB: businessShortCode!,
-      Timestamp: timestamp,
-      Password: password,
-    };
-
-    const res: STKPushResponse = await axios.post(
-      `${baseURL}/mpesa/stkpush/v1/processrequest`,
-      stkPushBody,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-
-    return res;
-  } catch (err: any) {
-    throw new Error(
-      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
-    );
-  }
-};
-
 /**
  * Use this API to check the status of a Lipa Na M-Pesa Online Payment.
  */
@@ -337,5 +271,3 @@ export const BusinessBuyGoods = async (
     );
   }
 };
-
-export { ReactDarajaProvider } from "./hooks/useReactDaraja";
