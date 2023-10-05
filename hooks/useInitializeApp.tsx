@@ -18,11 +18,13 @@ export const useInitializeApp = (
         {
           headers: {
             Authorization: `Bearer ${encodedCredentials}`,
+            "Access-Control-Allow-Origin": "*",
           },
         }
       );
       return res.data;
     } catch (err: any) {
+      console.error(err);
       throw new Error(
         `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
       );

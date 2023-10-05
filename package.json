@@ -3,11 +3,11 @@
   "version": "1.0.3",
   "description": "A react library for interacting with Safaricom`s daraja APIs",
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "module": "dist/index.cjs",
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "test",
-    "build": "tsup index.ts --format cjs,esm --dts --external axios",
+    "build": "tsup index.ts --format cjs,esm --dts --external axios --external react",
     "lint": "tsc",
     "release": "pnpm run build && changeset publish"
   },
