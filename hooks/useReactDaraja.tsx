@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { InitializeApp } from "..";
 import { BusinessShortCode, ContextData, STKPushBody } from "../types";
+import { useInitializeApp } from "./useInitializeApp";
 
 export const darajaAPIProvider = createContext<ContextData>({
   accessToken: null,
@@ -32,21 +32,20 @@ export const ReactDarajaProvider = ({
       ? "https://sandbox.safaricom.co.ke"
       : "https://api.safaricom.co.ke";
 
+  const initFunction = useInitializeApp({
+    consumerKey,
+    consumerSecret,
+  });
+
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
 
     const init = async () => {
-      const { access_token, expires_in } = await InitializeApp({
-        consumerKey,
-        consumerSecret,
-      });
+      const { access_token, expires_in } = await initFunction();
       setAccessToken(access_token);
 
       intervalId = setInterval(async () => {
-        const { access_token } = await InitializeApp({
-          consumerKey,
-          consumerSecret,
-        });
+        const { access_token } = await initFunction();
         setAccessToken(access_token);
       }, parseInt(expires_in));
     };

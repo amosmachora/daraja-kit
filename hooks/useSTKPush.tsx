@@ -6,13 +6,18 @@ import { useReactDaraja } from "./useReactDaraja";
 export const useSTKPush = (
   body: Omit<
     STKPushBody,
-    "BusinessShortCode" | "PartyB" | "Timestamp" | "Password"
+    | "BusinessShortCode"
+    | "PartyB"
+    | "Timestamp"
+    | "Password"
+    | "PhoneNumber"
+    | "PartyA"
   >
-): (() => Promise<STKPushResponse>) => {
+): ((phoneNumber: string) => Promise<STKPushResponse>) => {
   const { accessToken, businessShortCode, baseURL, mode, productionPassKey } =
     useReactDaraja();
 
-  const stkPush = async () => {
+  const stkPush = async (phoneNumber: string) => {
     try {
       const timestamp = generateTimestamp();
       const password =
@@ -26,6 +31,8 @@ export const useSTKPush = (
         PartyB: businessShortCode!,
         Timestamp: timestamp,
         Password: password,
+        PartyA: phoneNumber,
+        PhoneNumber: phoneNumber,
       };
 
       const res: STKPushResponse = await axios.post(
