@@ -7,36 +7,31 @@ import {
   B2CRequestResponse,
   BusinessRequestBody,
   BusinessRequestResponse,
-  InitializeAppResponse,
-  InitOptions,
   RegisterUrlBody,
   RegisterUrlResponse,
   ReverseC2BTransactionBody,
   ReverseC2BTransactionResponse,
-  ScannableQrCodeResponse,
-  ScannableQrParams,
   StateOfALNMOnlinePaymentBody,
   StateOfALNMOnlinePaymentResponse,
-  STKPushBody,
-  STKPushResponse,
   TaxRemittanceBody,
   TaxRemittanceResponse,
   TransactionStatusBody,
   TransactionStatusResponse,
-} from "./types";
-import { useReactDaraja } from "./hooks/useReactDaraja";
+} from "../types";
+import { BASE_URL } from "./env";
+import { generateAccessToken } from "./access-token";
 
 /**
  * Use this API to check the status of a Lipa Na M-Pesa Online Payment.
  */
-export const StateOfALNMOnlinePayment = async (
-  stateOfALNMOnlinePaymentBody: StateOfALNMOnlinePaymentBody,
-  accessToken: string
+export const getStateOfALNMOnlinePayment = async (
+  stateOfALNMOnlinePaymentBody: StateOfALNMOnlinePaymentBody
 ): Promise<StateOfALNMOnlinePaymentResponse> => {
-  const { baseURL } = useReactDaraja();
+  const accessToken = await generateAccessToken();
+
   try {
     const res: StateOfALNMOnlinePaymentResponse = await axios.post(
-      `${baseURL}/mpesa/stkpushquery/v1/query`,
+      `${BASE_URL}/mpesa/stkpushquery/v1/query`,
       stateOfALNMOnlinePaymentBody,
       {
         headers: {
@@ -53,15 +48,14 @@ export const StateOfALNMOnlinePayment = async (
   }
 };
 
-export const C2BRegisterURL = async (
-  registerUrlBody: RegisterUrlBody,
-  accessToken: string
+export const registerC2BUrl = async (
+  registerUrlBody: RegisterUrlBody
 ): Promise<RegisterUrlResponse> => {
-  const { baseURL } = useReactDaraja();
+  const accessToken = await generateAccessToken();
 
   try {
     const res: RegisterUrlResponse = await axios.post(
-      `${baseURL}/mpesa/c2b/v1/registerurl`,
+      `${BASE_URL}/mpesa/c2b/v1/registerurl`,
       registerUrlBody,
       {
         headers: {
@@ -78,15 +72,14 @@ export const C2BRegisterURL = async (
   }
 };
 
-export const BusinessToCustomer = async (
-  b2CBody: B2CRequestBody,
-  accessToken: string
+export const b2cPaymentRequest = async (
+  b2CBody: B2CRequestBody
 ): Promise<B2CRequestResponse> => {
-  const { baseURL } = useReactDaraja();
+  const accessToken = await generateAccessToken();
 
   try {
     const res: B2CRequestResponse = await axios.post(
-      `${baseURL}/mpesa/b2c/v1/paymentrequest`,
+      `${BASE_URL}/mpesa/b2c/v1/paymentrequest`,
       b2CBody,
       {
         headers: {
@@ -102,14 +95,37 @@ export const BusinessToCustomer = async (
   }
 };
 
-export const GetTransactionStatus = async (
-  transactionStatusBody: TransactionStatusBody,
-  accessToken: string
+export const b2bPaymentRequest = async (
+  body: BusinessRequestBody
+): Promise<BusinessRequestResponse> => {
+  const accessToken = await generateAccessToken();
+
+  try {
+    const res: BusinessRequestResponse = await axios.post(
+      `${BASE_URL}/mpesa/b2b/v1/paymentrequest`,
+      body,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    return res;
+  } catch (err: any) {
+    throw new Error(
+      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
+    );
+  }
+};
+
+export const getTransactionStatus = async (
+  transactionStatusBody: TransactionStatusBody
 ): Promise<TransactionStatusResponse> => {
-  const { baseURL } = useReactDaraja();
+  const accessToken = await generateAccessToken();
+
   try {
     const res: TransactionStatusResponse = await axios.post(
-      `${baseURL}/mpesa/transactionstatus/v1/query`,
+      `${BASE_URL}/mpesa/transactionstatus/v1/query`,
       transactionStatusBody,
       {
         headers: {
@@ -125,15 +141,14 @@ export const GetTransactionStatus = async (
   }
 };
 
-export const GetAccountBalance = async (
-  accountBalance: AccountBalanceBody,
-  accessToken: string
+export const getAccountBalance = async (
+  accountBalance: AccountBalanceBody
 ): Promise<AccountBalanceResponse> => {
-  const { baseURL } = useReactDaraja();
+  const accessToken = await generateAccessToken();
 
   try {
     const res: AccountBalanceResponse = await axios.post(
-      `${baseURL}/mpesa/accountbalance/v1/query`,
+      `${BASE_URL}/mpesa/accountbalance/v1/query`,
       accountBalance,
       {
         headers: {
@@ -149,15 +164,14 @@ export const GetAccountBalance = async (
   }
 };
 
-export const ReverseC2BTransaction = async (
-  body: ReverseC2BTransactionBody,
-  accessToken: string
+export const reverseC2BTransaction = async (
+  body: ReverseC2BTransactionBody
 ): Promise<ReverseC2BTransactionResponse> => {
-  const { baseURL } = useReactDaraja();
+  const accessToken = await generateAccessToken();
 
   try {
     const res: ReverseC2BTransactionResponse = await axios.post(
-      `${baseURL}/mpesa/reversal/v1/request`,
+      `${BASE_URL}/mpesa/reversal/v1/request`,
       body,
       {
         headers: {
@@ -173,15 +187,14 @@ export const ReverseC2BTransaction = async (
   }
 };
 
-export const RemitTax = async (
-  body: TaxRemittanceBody,
-  accessToken: string
+export const remitTax = async (
+  body: TaxRemittanceBody
 ): Promise<TaxRemittanceResponse> => {
-  const { baseURL } = useReactDaraja();
+  const accessToken = await generateAccessToken();
 
   try {
     const res: TaxRemittanceResponse = await axios.post(
-      `${baseURL}/mpesa/b2b/v1/remittax`,
+      `${BASE_URL}/mpesa/b2b/v1/remittax`,
       body,
       {
         headers: {
@@ -197,54 +210,5 @@ export const RemitTax = async (
   }
 };
 
-export const BusinessPaybill = async (
-  body: BusinessRequestBody,
-  accessToken: string
-): Promise<BusinessRequestResponse> => {
-  const { baseURL } = useReactDaraja();
-
-  try {
-    const res: BusinessRequestResponse = await axios.post(
-      `${baseURL}/mpesa/b2b/v1/paymentrequest`,
-      body,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-    return res;
-  } catch (err: any) {
-    throw new Error(
-      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
-    );
-  }
-};
-
-export const BusinessBuyGoods = async (
-  body: BusinessRequestBody,
-  accessToken: string
-) => {
-  const { baseURL } = useReactDaraja();
-
-  try {
-    const res: BusinessRequestResponse = await axios.post(
-      `${baseURL}/mpesa/b2b/v1/paymentrequest`,
-      body,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-    return res;
-  } catch (err: any) {
-    throw new Error(
-      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
-    );
-  }
-};
-
-export { ReactDarajaProvider } from "./hooks/useReactDaraja";
-export { useSTKPush } from "./hooks/useSTKPush";
-export { QRCodeDisplay } from "./components/QRCodeDisplay";
+export { stkPushRequest } from "./stk-push";
+export { QRCodeDisplay } from "../components/QRCodeDisplay";
