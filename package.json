@@ -7,7 +7,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "test",
-    "build": "tsup index.ts --format cjs,esm --dts --external axios --external react",
+    "build": "tsup src/index.ts --format cjs,esm --dts --external axios --external react",
     "lint": "tsc",
     "release": "pnpm run build && changeset publish"
   },
