@@ -1,5 +1,3 @@
-import React from "react";
-
 export interface ContextData {
   accessToken: string | null;
   mode: "development" | "production";
@@ -13,7 +11,7 @@ export type InitOptions = {
   consumerSecret: string;
 };
 
-export interface InitializeAppResponse {
+export interface AccessTokenResponse {
   access_token: string;
   expires_in: string;
 }
