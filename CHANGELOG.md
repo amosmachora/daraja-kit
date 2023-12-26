@@ -1,5 +1,11 @@
 # react-daraja
 
+## 1.0.4
+
+### Patch Changes
+
+- 73a2f4f: added export to index.ts
+
 ## 1.0.3
 
 ### Patch Changes
