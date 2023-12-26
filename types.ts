@@ -160,6 +160,57 @@ export interface StateOfALNMOnlinePaymentResponse {
 }
 
 /**
+ * This is the transaction type that is used to identify the transaction when sending the request to M-PESA.
+ * The transaction type for M-PESA Express is "CustomerPayBillOnline" for PayBill Numbers and "CustomerBuyGoodsOnline" for Till Numbers.
+ * @type {"CustomerPayBillOnline" | "CustomerBuyGoodsOnline"}
+ * @example "CustomerPayBillOnline"
+ */
+export type TransactionType =
+  | "CustomerPayBillOnline"
+  | "CustomerBuyGoodsOnline";
+
+/**
+ * The Mobile Number to receive the STK Pin Prompt. This number can be the same as PartyA value above.
+ * @type {string}
+ * @example "2547XXXXXXXX"
+ */
+export type PhoneNumber = string;
+
+/**
+ * This is the Amount transacted normally a numeric value. Money that the customer pays to the Shortcode.
+ * Only whole numbers are supported.
+ * @type {string}
+ * @example "10"
+ */
+export type Amount = string;
+
+/**
+ * A CallBack URL is a valid secure URL that is used to receive notifications from M-Pesa API.
+ * It is the endpoint to which the results will be sent by M-Pesa API.
+ * @type {string}
+ * @example "https://mydomain.com/path"
+ */
+export type CallBackURL = string;
+
+/**
+ * This is any additional information/comment that can be sent along with the request from your system.
+ * Maximum of 13 Characters.
+ * @type {string}
+ * @example "Payment for Order"
+ */
+export type TransactionDesc = string;
+
+/**
+ * Account Reference: This is an Alpha-Numeric parameter that is defined by your system as an Identifier
+ * of the transaction for the CustomerPayBillOnline transaction type.
+ * Along with the business name, this value is also displayed to the customer in the STK Pin Prompt message.
+ * Maximum of 12 characters.
+ * @type {string}
+ * @example "ABC123456789"
+ */
+export type AccountReference = string;
+
+/**
  * Request Parameter Description
  * @interface STKPushBody
  */
@@ -182,21 +233,9 @@ export interface STKPushBody {
    */
   Timestamp: string;
 
-  /**
-   * This is the transaction type that is used to identify the transaction when sending the request to M-PESA.
-   * The transaction type for M-PESA Express is "CustomerPayBillOnline" for PayBill Numbers and "CustomerBuyGoodsOnline" for Till Numbers.
-   * @type {"CustomerPayBillOnline" | "CustomerBuyGoodsOnline"}
-   * @example "CustomerPayBillOnline"
-   */
-  TransactionType: "CustomerPayBillOnline" | "CustomerBuyGoodsOnline";
+  TransactionType: TransactionType;
 
-  /**
-   * This is the Amount transacted normally a numeric value. Money that the customer pays to the Shortcode.
-   * Only whole numbers are supported.
-   * @type {string}
-   * @example "10"
-   */
-  Amount: string;
+  Amount: Amount;
 
   /**
    * The phone number sending money. The parameter expected is a Valid Safaricom Mobile Number that is M-PESA registered
@@ -214,38 +253,13 @@ export interface STKPushBody {
    */
   PartyB: string;
 
-  /**
-   * The Mobile Number to receive the STK Pin Prompt. This number can be the same as PartyA value above.
-   * @type {string}
-   * @example "2547XXXXXXXX"
-   */
-  PhoneNumber: string;
+  PhoneNumber: PhoneNumber;
 
-  /**
-   * A CallBack URL is a valid secure URL that is used to receive notifications from M-Pesa API.
-   * It is the endpoint to which the results will be sent by M-Pesa API.
-   * @type {string}
-   * @example "https://mydomain.com/path"
-   */
-  CallBackURL: string;
+  CallBackURL: CallBackURL;
 
-  /**
-   * Account Reference: This is an Alpha-Numeric parameter that is defined by your system as an Identifier
-   * of the transaction for the CustomerPayBillOnline transaction type.
-   * Along with the business name, this value is also displayed to the customer in the STK Pin Prompt message.
-   * Maximum of 12 characters.
-   * @type {string}
-   * @example "ABC123456789"
-   */
-  AccountReference?: string;
+  AccountReference?: AccountReference;
 
-  /**
-   * This is any additional information/comment that can be sent along with the request from your system.
-   * Maximum of 13 Characters.
-   * @type {string}
-   * @example "Payment for Order"
-   */
-  TransactionDesc: string;
+  TransactionDesc: TransactionDesc;
 }
 
 /**

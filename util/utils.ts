@@ -1,5 +1,3 @@
-import { encode } from "base-64";
-
 /**
  * Generates a timestamp in the format of YEAR+MONTH+DATE+HOUR+MINUTE+SECOND (YYYYMMDDHHMMSS).
  * @returns {string} Timestamp in the specified format.
@@ -23,7 +21,7 @@ export const generatePassword = (
   timestamp: string
 ): string => {
   const concatenatedString = `${businessShortCode}${passkey}${timestamp}`;
-  const encodedString = encode(concatenatedString);
+  const encodedString = btoa(concatenatedString);
 
   return encodedString;
 };

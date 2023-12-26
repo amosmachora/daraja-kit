@@ -19,15 +19,20 @@ export const CONSUMER_SECRET = assertValue(
 );
 
 export const BUSINESS_SHORT_CODE = assertValue(
-  process.env.BUSINESS_SHORT_CODE,
-  "Missing environment variable: BUSINESS_SHORT_CODE"
+  process.env.MPESA_BUSINESS_SHORT_CODE,
+  "Missing environment variable: MPESA_BUSINESS_SHORT_CODE"
 );
 
-export const PRODUCTION_PASS_KEY =
+export const MPESA_TRANSACTION_TYPE = assertValue(
+  process.env.MPESA_TRANSACTION_TYPE,
+  "Missing environment variable: MPESA_TRANSACTION_TYPE"
+);
+
+export const PASSKEY =
   ENVIRONMENT === "production"
     ? assertValue(
-        process.env.PRODUCTION_PASS_KEY,
-        "Missing environment variable: PRODUCTION_PASS_KEY"
+        process.env.MPESA_API_PASS_KEY,
+        "Missing environment variable: PASSKEY"
       )
     : null;
 

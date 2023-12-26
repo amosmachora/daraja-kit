@@ -5,7 +5,7 @@ import { AccessTokenResponse } from "../types";
 
 export const generateAccessToken = async (): Promise<AccessTokenResponse> => {
   const credentials = `${CONSUMER_KEY}:${CONSUMER_SECRET}`;
-  const encodedCredentials = btoa(credentials);
+  const encodedAuthString = Buffer.from(credentials).toString("base64");
 
   const token: AccessTokenResponse = cache.get("act");
 
@@ -18,7 +18,7 @@ export const generateAccessToken = async (): Promise<AccessTokenResponse> => {
       `${BASE_URL}/oauth/v1/generate?grant_type=client_credentials`,
       {
         headers: {
-          Authorization: `Bearer ${encodedCredentials}`,
+          Authorization: `Basic ${encodedAuthString}`,
           "Access-Control-Allow-Origin": "*",
         },
       }
