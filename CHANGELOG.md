@@ -1,5 +1,11 @@
 # react-daraja
 
+## 0.1.0
+
+### Minor Changes
+
+- 83f91bc: removed frontend react hooks
+
 ## 1.0.4
 
 ### Patch Changes
