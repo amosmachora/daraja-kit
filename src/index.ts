@@ -27,7 +27,7 @@ import { generateAccessToken } from "./access-token";
 export const getStateOfALNMOnlinePayment = async (
   stateOfALNMOnlinePaymentBody: StateOfALNMOnlinePaymentBody
 ): Promise<StateOfALNMOnlinePaymentResponse> => {
-  const accessToken = await generateAccessToken();
+  const { access_token } = await generateAccessToken();
 
   try {
     const res: StateOfALNMOnlinePaymentResponse = await axios.post(
@@ -35,7 +35,7 @@ export const getStateOfALNMOnlinePayment = async (
       stateOfALNMOnlinePaymentBody,
       {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${access_token}`,
         },
       }
     );
@@ -51,7 +51,7 @@ export const getStateOfALNMOnlinePayment = async (
 export const registerC2BUrl = async (
   registerUrlBody: RegisterUrlBody
 ): Promise<RegisterUrlResponse> => {
-  const accessToken = await generateAccessToken();
+  const { access_token } = await generateAccessToken();
 
   try {
     const res: RegisterUrlResponse = await axios.post(
@@ -59,7 +59,7 @@ export const registerC2BUrl = async (
       registerUrlBody,
       {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${access_token}`,
         },
       }
     );
@@ -75,7 +75,7 @@ export const registerC2BUrl = async (
 export const b2cPaymentRequest = async (
   b2CBody: B2CRequestBody
 ): Promise<B2CRequestResponse> => {
-  const accessToken = await generateAccessToken();
+  const { access_token } = await generateAccessToken();
 
   try {
     const res: B2CRequestResponse = await axios.post(
@@ -83,7 +83,7 @@ export const b2cPaymentRequest = async (
       b2CBody,
       {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${access_token}`,
         },
       }
     );
@@ -98,7 +98,7 @@ export const b2cPaymentRequest = async (
 export const b2bPaymentRequest = async (
   body: BusinessRequestBody
 ): Promise<BusinessRequestResponse> => {
-  const accessToken = await generateAccessToken();
+  const { access_token } = await generateAccessToken();
 
   try {
     const res: BusinessRequestResponse = await axios.post(
@@ -106,7 +106,7 @@ export const b2bPaymentRequest = async (
       body,
       {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${access_token}`,
         },
       }
     );
@@ -121,7 +121,7 @@ export const b2bPaymentRequest = async (
 export const getTransactionStatus = async (
   transactionStatusBody: TransactionStatusBody
 ): Promise<TransactionStatusResponse> => {
-  const accessToken = await generateAccessToken();
+  const { access_token } = await generateAccessToken();
 
   try {
     const res: TransactionStatusResponse = await axios.post(
@@ -129,7 +129,7 @@ export const getTransactionStatus = async (
       transactionStatusBody,
       {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${access_token}`,
         },
       }
     );
@@ -144,7 +144,7 @@ export const getTransactionStatus = async (
 export const getAccountBalance = async (
   accountBalance: AccountBalanceBody
 ): Promise<AccountBalanceResponse> => {
-  const accessToken = await generateAccessToken();
+  const { access_token } = await generateAccessToken();
 
   try {
     const res: AccountBalanceResponse = await axios.post(
@@ -152,7 +152,7 @@ export const getAccountBalance = async (
       accountBalance,
       {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${access_token}`,
         },
       }
     );
@@ -167,7 +167,7 @@ export const getAccountBalance = async (
 export const reverseC2BTransaction = async (
   body: ReverseC2BTransactionBody
 ): Promise<ReverseC2BTransactionResponse> => {
-  const accessToken = await generateAccessToken();
+  const { access_token } = await generateAccessToken();
 
   try {
     const res: ReverseC2BTransactionResponse = await axios.post(
@@ -175,7 +175,7 @@ export const reverseC2BTransaction = async (
       body,
       {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${access_token}`,
         },
       }
     );
@@ -190,7 +190,7 @@ export const reverseC2BTransaction = async (
 export const remitTax = async (
   body: TaxRemittanceBody
 ): Promise<TaxRemittanceResponse> => {
-  const accessToken = await generateAccessToken();
+  const { access_token } = await generateAccessToken();
 
   try {
     const res: TaxRemittanceResponse = await axios.post(
@@ -198,7 +198,7 @@ export const remitTax = async (
       body,
       {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${access_token}`,
         },
       }
     );
@@ -212,3 +212,4 @@ export const remitTax = async (
 
 export { stkPushRequest } from "./stk-push";
 export { QRCodeDisplay } from "../components/QRCodeDisplay";
+export * from "../types";
