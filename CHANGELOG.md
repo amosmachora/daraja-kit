@@ -1,5 +1,11 @@
 # react-daraja
 
+## 0.1.1
+
+### Patch Changes
+
+- fd06e5c: completed stkPushRequest function
+
 ## 0.1.0
 
 ### Minor Changes
