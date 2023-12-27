@@ -28,13 +28,10 @@ export const MPESA_TRANSACTION_TYPE = assertValue(
   "Missing environment variable: MPESA_TRANSACTION_TYPE"
 );
 
-export const PASSKEY =
-  ENVIRONMENT === "production"
-    ? assertValue(
-        process.env.MPESA_API_PASS_KEY,
-        "Missing environment variable: PASSKEY"
-      )
-    : null;
+export const PASSKEY = assertValue(
+  process.env.MPESA_API_PASS_KEY,
+  "Missing environment variable: PASSKEY"
+);
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
   if (v === undefined) {

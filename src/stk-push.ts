@@ -50,11 +50,9 @@ export const stkPushRequest = async ({
       AccountReference: accountReference,
     };
 
-    console.log(stkPushBody);
-
     const accessTokenResponse = await generateAccessToken();
 
-    const res: STKPushResponse = await axios.post(
+    const res = await axios.post<STKPushResponse>(
       `${BASE_URL}/mpesa/stkpush/v1/processrequest`,
       stkPushBody,
       {
@@ -64,7 +62,7 @@ export const stkPushRequest = async ({
       }
     );
 
-    return res;
+    return res.data;
   } catch (err: any) {
     console.error(err);
 

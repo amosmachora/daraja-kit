@@ -257,7 +257,7 @@ export interface STKPushBody {
 
   CallBackURL: CallBackURL;
 
-  AccountReference?: AccountReference;
+  AccountReference: AccountReference;
 
   TransactionDesc: TransactionDesc;
 }

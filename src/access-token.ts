@@ -19,15 +19,15 @@ export const generateAccessToken = async (): Promise<AccessTokenResponse> => {
       {
         headers: {
           Authorization: `Basic ${encodedAuthString}`,
-          "Access-Control-Allow-Origin": "*",
         },
       }
     );
 
-    cache.put("act", res.data, res.data.expires_in);
+    cache.put("act", res.data, 3600);
 
     return res.data;
   } catch (err: any) {
+    console.error(err);
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
     );
