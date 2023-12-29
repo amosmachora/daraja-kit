@@ -1,5 +1,11 @@
 # react-daraja
 
+## 0.1.2
+
+### Patch Changes
+
+- 3d81262: refactored folder structure and introduced react sub module
+
 ## 0.1.1
 
 ### Patch Changes
