@@ -12,6 +12,11 @@ To install React Daraja, run the following command in your project's terminal:
 
 ## Getting Started
 
+Copy over the `.env.local` file into a `.env` file using the following command.
+```
+cp .env.local .env
+```
+
 Before using the library, make sure to set up the required environment variables in the .env file. These variables include:
 
 - **NODE_ENV**: Set the environment to either "production" or "development."
