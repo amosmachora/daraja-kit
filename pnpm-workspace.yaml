@@ -1,0 +1,3 @@
+packages:
+  # exclude packages that are inside the docs directory
+  - "!docs-app/**"
