@@ -1,5 +1,11 @@
 # react-daraja
 
+## 0.1.5
+
+### Patch Changes
+
+- a85570e: Made QRcode non async
+
 ## 0.1.4
 
 ### Patch Changes
