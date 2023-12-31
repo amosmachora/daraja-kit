@@ -1,5 +1,11 @@
 # react-daraja
 
+## 0.1.4
+
+### Patch Changes
+
+- 734fcd0: better folder structure and created a next js docs app
+
 ## 0.1.3
 
 ### Patch Changes
