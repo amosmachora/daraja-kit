@@ -18,10 +18,10 @@ import {
   ReverseC2BTransactionResponse,
   TaxRemittanceBody,
   TaxRemittanceResponse,
-} from "../types";
+} from "../types/types";
 import { generateTimestamp, generatePassword } from "../util/utils";
 import { generateAccessToken } from "./access-token";
-import { BASE_URL, BUSINESS_SHORT_CODE, PASSKEY } from "./env";
+import { BASE_URL, BUSINESS_SHORT_CODE, PASSKEY } from "../env";
 
 export const fetchQrCode = async (
   scannableQrParams: ScannableQrParams
@@ -45,8 +45,13 @@ export const fetchQrCode = async (
   }
 };
 
+export type StateOfALNMOnlinePaymentParam = Omit<
+  StateOfALNMOnlinePaymentBody,
+  "password"
+>;
+
 export const getStateOfALNMOnlinePayment = async (
-  stateOfALNMOnlinePaymentBody: Omit<StateOfALNMOnlinePaymentBody, "password">
+  stateOfALNMOnlinePaymentBody: StateOfALNMOnlinePaymentParam
 ): Promise<StateOfALNMOnlinePaymentResponse> => {
   const { access_token } = await generateAccessToken();
 

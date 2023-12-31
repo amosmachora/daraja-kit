@@ -8,9 +8,9 @@ import {
   STKPushResponse,
   TransactionDesc,
   TransactionType,
-} from "../types";
+} from "../types/types";
 import { generateTimestamp, generatePassword } from "../util/utils";
-import { BASE_URL, BUSINESS_SHORT_CODE, ENVIRONMENT, PASSKEY } from "./env";
+import { BASE_URL, BUSINESS_SHORT_CODE, ENVIRONMENT, PASSKEY } from "../env";
 import { generateAccessToken } from "./access-token";
 
 export const stkPushRequest = async ({
