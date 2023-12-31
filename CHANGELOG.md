@@ -1,5 +1,11 @@
 # react-daraja
 
+## 0.1.3
+
+### Patch Changes
+
+- ef27e93: made QRCodeDisplay a server component and created a contributing.md file
+
 ## 0.1.2
 
 ### Patch Changes
