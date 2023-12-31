@@ -1,10 +1,10 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: ["./src/index.ts"],
+  entry: ["src", "!src/wrapper-fns/**", "!src/types/**", "/src/util/**"],
   dts: true,
   format: ["esm", "cjs"],
-  outDir: "dist", // Specify the output directory for your files
+  outDir: "dist",
   esbuildOptions(options) {
     options.external = ["react", "axios"];
   },

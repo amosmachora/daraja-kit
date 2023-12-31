@@ -1,7 +1,7 @@
 import axios from "axios";
-import { BASE_URL, CONSUMER_KEY, CONSUMER_SECRET } from "./env";
+import { BASE_URL, CONSUMER_KEY, CONSUMER_SECRET } from "../env";
 import cache from "memory-cache";
-import { AccessTokenResponse } from "../types";
+import { AccessTokenResponse } from "../types/types";
 
 export const generateAccessToken = async (): Promise<AccessTokenResponse> => {
   const credentials = `${CONSUMER_KEY}:${CONSUMER_SECRET}`;
