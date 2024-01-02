@@ -1,5 +1,11 @@
 # react-daraja
 
+## 0.1.6
+
+### Patch Changes
+
+- 62e1b46: fixed some components and cleaned up some bugs
+
 ## 0.1.5
 
 ### Patch Changes
