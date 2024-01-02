@@ -13,19 +13,21 @@ import { generateTimestamp, generatePassword } from "../util/utils";
 import { BASE_URL, BUSINESS_SHORT_CODE, ENVIRONMENT, PASSKEY } from "../env";
 import { generateAccessToken } from "./access-token";
 
+export type STKPushRequestParam = {
+  phoneNumber: PhoneNumber;
+  amount: Amount;
+  callbackURL: CallBackURL;
+  transactionDesc: TransactionDesc;
+  accountReference: AccountReference;
+};
+
 export const stkPushRequest = async ({
   phoneNumber,
   amount,
   callbackURL,
   transactionDesc,
   accountReference,
-}: {
-  phoneNumber: PhoneNumber;
-  amount: Amount;
-  callbackURL: CallBackURL;
-  transactionDesc: TransactionDesc;
-  accountReference: AccountReference;
-}) => {
+}: STKPushRequestParam) => {
   try {
     const timestamp = generateTimestamp();
 

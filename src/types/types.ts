@@ -483,14 +483,13 @@ export interface RegisterUrlBody {
    * @example "Completed"
    */
   ResponseType: "Cancelled" | "Completed";
-
-  /**
-   * Usually, a unique number is tagged to an M-PESA pay bill/till number of the organization.
-   * @type {string}
-   * @example "123456"
-   */
-  ShortCode: string;
 }
+// /**
+//  * Usually, a unique number is tagged to an M-PESA pay bill/till number of the organization.
+//  * @type {string}
+//  * @example "123456"
+//  */
+// ShortCode: string;
 
 /**
  * Response Parameters Definition

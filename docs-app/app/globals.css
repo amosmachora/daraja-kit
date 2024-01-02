@@ -16,12 +16,30 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.show {
+  @apply outline outline-1 outline-red-500;
+}
+
+h1 {
+  @apply font-semibold text-4xl mt-2;
+}
+
+h2 {
+  @apply font-semibold text-3xl mt-2;
+}
+
+h3 {
+  @apply font-semibold text-2xl mt-2;
+}
+
+h4 {
+  @apply font-semibold text-xl mt-8;
+}
+
+section {
+  @apply mt-10;
+}
+
+.center-absolutely {
+  @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
 }
