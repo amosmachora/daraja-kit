@@ -1,2 +1,2 @@
 export * from "./wrapper-fns";
-export { stkPushRequest } from "./stk-push";
+export { stkPushRequest, STKPushRequestParam } from "./stk-push";

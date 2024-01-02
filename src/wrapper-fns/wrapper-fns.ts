@@ -85,7 +85,10 @@ export const registerC2BUrl = async (
   try {
     const res: RegisterUrlResponse = await axios.post(
       `${BASE_URL}/mpesa/c2b/v1/registerurl`,
-      registerUrlBody,
+      {
+        ...registerUrlBody,
+        ShortCode: BUSINESS_SHORT_CODE,
+      },
       {
         headers: {
           Authorization: `Bearer ${access_token}`,

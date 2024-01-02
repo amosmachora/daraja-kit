@@ -19,7 +19,7 @@ export const QRCodeDisplay = async ({
   qrImage.src = `data:image/png;base64,${QRCode}`;
 
   return (
-    <div className={twMerge(`w-16 aspect-square`, className)}>
+    <div className={twMerge(`w-[100px] aspect-square`, className)}>
       {QRCode ? (
         <img src={qrImage.src} alt="QR Code" className="w-full h-full" />
       ) : (
