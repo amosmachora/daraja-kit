@@ -6,7 +6,7 @@ export const APIItemTitle = ({ text }: { text: string }) => {
   const [hovered, setHovered] = useState(false);
   return (
     <h3
-      id={text}
+      id={text.replaceAll(" ", "")}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="flex gap-x-2"
@@ -16,7 +16,9 @@ export const APIItemTitle = ({ text }: { text: string }) => {
         <button
           className="text-myPurple hover:underline"
           onClick={() =>
-            navigator.clipboard.writeText(`${document.location}/api#${text}`)
+            navigator.clipboard.writeText(
+              `${document.location}/api#${text.replace(" ", "")}`
+            )
           }
         >
           #

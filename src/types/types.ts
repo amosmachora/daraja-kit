@@ -1783,3 +1783,59 @@ export interface BusinessRequestResponse {
    */
   ResponseDescription: string;
 }
+
+/**
+ * B2B Express Checkout Request Body
+ */
+export type B2BExpressCheckoutBody = {
+  /**
+   * Debit party, the merchant’s till (organization sending money) shortCode/tillNumber.
+   * @type {number}
+   * @example 000001
+   */
+  primaryShortCode: number;
+
+  /**
+   * Credit party, the vendor (payBill Account) receiving the amount from the merchant.
+   * @type {number}
+   * @example 000002
+   */
+  receiverShortCode: number;
+
+  /**
+   * Amount to be sent to the vendor.
+   * @type {number}
+   * @example 100
+   */
+  amount: number;
+
+  /**
+   * Reference to the payment being made. Appears in the text for easy reference by the merchant.
+   * @type {string}
+   * @example "paymentRef"
+   */
+  paymentRef: string;
+
+  /**
+   * Endpoint from the vendor system used to send back the confirmation response once the transaction is complete.
+   * @type {string}
+   * @example "http://..../result"
+   */
+  callbackUrl: string;
+
+  /**
+   * Organization's friendly name used by the vendor as known by the Merchant.
+   * @type {string}
+   * @example "Vendor"
+   */
+  partnerName: string;
+
+  /**
+   * Random Unique Identifier sent by the vendor System.
+   * Used to track the process across different components.
+   * Generated at the Apigee level, and the result returned in the acknowledgment.
+   * @type {string}
+   * @example "550e8400-e29b-41d4-a716-446655440000"
+   */
+  RequestRefID: string;
+};

@@ -2,6 +2,7 @@ import { PageNavSmall } from "@/components/PageNavSmall";
 import Image from "next/image";
 import maple from "../public/maple.jpeg";
 import { NextPage } from "@/components/NextPage";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         modern and stress free manner.
       </p>
       <NextPage nextHref="installation" />
+      <SmoothScroll />
     </main>
   );
 }

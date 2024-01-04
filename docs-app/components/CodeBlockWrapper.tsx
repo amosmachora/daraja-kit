@@ -11,6 +11,7 @@ export const CodeBlockWrapper = ({ code }: { code: string }) => {
         language="javascript"
         showLineNumbers={false}
         theme={dracula}
+        wrapLongLines
       />
     </div>
   );

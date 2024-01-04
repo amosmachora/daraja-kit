@@ -4,6 +4,8 @@ Welcome to React Daraja! We're excited that you're interested in contributing. B
 
 ## How to Contribute
 
+If you want to contribute to the library itself just make changes on other files other than the docs-app folder. If you want to contribute to the documentation app all the source code is in the docs-app folder (NextJS)
+
 We use [changesets](https://github.com/atlassian/changesets) to manage releases and versioning. Follow the three-step process below to contribute:
 
 ### Step 1: Make Changes
