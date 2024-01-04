@@ -12,11 +12,13 @@ import { StateOfALNMOnlinePayment } from "@/components/StateOfALNMOnlinePayment"
 import { TaxRemittance } from "@/components/TaxRemittance";
 import { TransactionStatus } from "@/components/TransactionStatus";
 import React from "react";
+import SmoothScroll from "@/components/SmoothScroll";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const links = [
   "STKPush",
   "QRCode",
-  "State Of A Lipa Na Mpesa Online Payment",
+  "StateOfALipaNaMpesaOnlinePayment",
   "RegisterURLS",
   "B2CPaymentRequest",
   "TransactionStatus",
@@ -30,7 +32,7 @@ const links = [
 const Page = () => {
   return (
     <>
-      <main className="w-4/6 p-5 h-full overflow-y-scroll">
+      <ScrollArea className="w-4/6 p-5 h-full">
         <PageNavSmall />
         <h1>API</h1>
         <p>The documentation of all available functions and types.</p>
@@ -46,18 +48,20 @@ const Page = () => {
         <B2BPaymentRequest />
         <B2BExpressCheckout />
         <NextPage prevHref="installation" />
-      </main>
+      </ScrollArea>
       <aside className="w-1/6 border-l p-5 flex flex-col gap-3">
+        <p className="text-myPurple font-semibold">On this page</p>
         {links.map((l) => (
           <a
             href={`http://localhost:3000/api#${l}`}
-            className="bg-gray-100 text-sm font-semibold px-2 hover:text-myPurple"
+            className="bg-gray-100 text-sm font-semibold px-2 hover:text-myPurple ml-2 overflow-clip"
             key={l}
           >
             {l}
           </a>
         ))}
       </aside>
+      <SmoothScroll />
     </>
   );
 };
