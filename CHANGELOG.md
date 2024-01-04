@@ -1,5 +1,11 @@
 # react-daraja
 
+## 0.1.7
+
+### Patch Changes
+
+- 6642caf: added new B2BCheckoutRequest API
+
 ## 0.1.6
 
 ### Patch Changes
