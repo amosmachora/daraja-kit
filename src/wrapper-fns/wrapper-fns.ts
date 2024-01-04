@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import {
   ScannableQrParams,
   ScannableQrCodeResponse,
@@ -18,6 +18,7 @@ import {
   ReverseC2BTransactionResponse,
   TaxRemittanceBody,
   TaxRemittanceResponse,
+  B2BExpressCheckoutBody,
 } from "../types/types";
 import { generateTimestamp, generatePassword } from "../util/utils";
 import { generateAccessToken } from "./access-token";
@@ -236,6 +237,26 @@ export const remitTax = async (
     );
     return res;
   } catch (err: any) {
+    throw new Error(
+      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
+    );
+  }
+};
+
+export const b2bExpressCheckout = async (data: B2BExpressCheckoutBody) => {
+  const { access_token } = await generateAccessToken();
+
+  try {
+    const res = axios.post(`${BASE_URL}/v1/ussdpush/get-msisdn`, data, {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    });
+
+    return res;
+  } catch (error) {
+    const err = error as AxiosError;
+    console.error(error);
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
     );
