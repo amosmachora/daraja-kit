@@ -17,7 +17,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "api",
+  title: "Api",
 };
 
 const links = [
