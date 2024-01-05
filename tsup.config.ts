@@ -1,7 +1,16 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: ["src", "!src/wrapper-fns/**", "!src/types/**", "/src/util/**"],
+  entry: [
+    // included
+    "src",
+    "src/next",
+    "src/react",
+    // not-included
+    "!src/wrapper-fns/**",
+    "!src/types/**",
+    "!/src/util/**",
+  ],
   dts: true,
   format: ["esm", "cjs"],
   outDir: "dist",
