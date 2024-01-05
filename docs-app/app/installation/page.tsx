@@ -3,7 +3,12 @@ import { NextPage } from "@/components/NextPage";
 import { PageNavSmall } from "@/components/PageNavSmall";
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "installation",
+};
 
 const Page = () => {
   return (

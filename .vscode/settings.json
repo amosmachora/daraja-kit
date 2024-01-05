@@ -32,6 +32,7 @@
     "Testapi",
     "transactionstatus",
     "tsup",
+    "typesafe",
     "ussdpush"
   ]
 }
