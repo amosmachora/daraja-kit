@@ -10,7 +10,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: { template: "%s React Daraja Docs", default: "React Daraja Docs" },
+  title: { template: "%s | React Daraja Docs", default: "React Daraja Docs" },
   description:
     "React Daraja is a typesafe Javascript library designed to simplify interactions with the Safaricom Daraja API, specifically for STK push requests. This library is suitable for both Node.js and React environments, allowing developers to seamlessly integrate M-Pesa payments into their applications.",
   twitter: {

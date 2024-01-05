@@ -17,7 +17,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "api",
+  title: "Api",
 };
 
 const links = [
@@ -58,7 +58,7 @@ const Page = () => {
         <p className="text-myPurple font-semibold">On this page</p>
         {links.map((l) => (
           <a
-            href={`http://localhost:3000/api#${l}`}
+            href={`https://react-daraja.vercel.app/api#${l}`}
             className="bg-gray-100 text-sm font-semibold px-2 hover:text-myPurple ml-2 overflow-clip"
             key={l}
           >
