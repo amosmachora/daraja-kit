@@ -65,7 +65,7 @@ export const QrCode = () => {
 
   const frontendVanillaReactCode = `
     import React, { useEffect, useState } from "react";
-    import { QRCodeDisplay } from "react-daraja/react";
+    import { QRCodeDisplayReact } from "react-daraja/react";
     import axios from "axios";
 
     const VanillaReactQRCodeExample = () => {
@@ -83,7 +83,7 @@ export const QrCode = () => {
       return (
         <>
           {qrString ? (
-            <QRCodeDisplay qrString={qrString} />
+            <QRCodeDisplayReact qrString={qrString} />
           ) : (
             "show loading spinner or something"
           )}
@@ -107,15 +107,15 @@ export const QrCode = () => {
       <CodeBlockWrapper code={nextJSCodeExample} />
       <div className="mt-5">
         Now if you use vanilla react i.e create-react-app or vite maybe you can
-        import <CopyPastableSpan text="QRCodeDisplay" /> from react but you have
-        to fetch the QRString yourself from your backend. For that use case here
-        is how you might fetch the string in your node backend or next api
+        import <CopyPastableSpan text="QRCodeDisplayReact" /> from react but you
+        have to fetch the QRString yourself from your backend. For that use case
+        here is how you might fetch the string in your node backend or next api
         route.
       </div>
       <CodeBlockWrapper code={backendQRCode} />
       <p className="mt-5">
         After fetching your QRCode in your backend you can then use the{" "}
-        <CopyPastableSpan text="QRCodeDisplay" /> from{" "}
+        <CopyPastableSpan text="QRCodeDisplayReact" /> from{" "}
         <CopyPastableSpan text="react-daraja/react" /> to display your QRCode .
         Example
       </p>
