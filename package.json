@@ -1,6 +1,6 @@
 {
   "name": "react-daraja",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "A react library for interacting with Safaricom`s daraja APIs",
   "main": "dist/index.js",
   "module": "dist/index.cjs",

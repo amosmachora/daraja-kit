@@ -1,5 +1,11 @@
 # react-daraja
 
+## 0.1.8
+
+### Patch Changes
+
+- 15d3b93: fixed index.ts import issue (submodules)
+
 ## 0.1.7
 
 ### Patch Changes
