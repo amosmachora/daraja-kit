@@ -116,6 +116,13 @@ export const QrCode = () => {
     TrxCode: "PB",
   };
 
+  const val = process.env.NODE_ENV;
+  const ckk = process.env.MPESA_CONSUMER_KEY;
+  console.log({
+    val,
+    ckk,
+  });
+
   return (
     <section>
       <APIItemTitle text="QR Code" />
