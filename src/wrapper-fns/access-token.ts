@@ -23,7 +23,7 @@ export const generateAccessToken = async (): Promise<AccessTokenResponse> => {
       }
     );
 
-    cache.put("act", res.data, 3600);
+    cache.put("act", res.data, 3599 * 1000);
 
     return res.data;
   } catch (err: any) {

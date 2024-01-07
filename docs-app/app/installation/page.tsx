@@ -31,8 +31,8 @@ const Page = () => {
         </p>
         <div className="mt-5 flex flex-col gap-2 pl-5">
           <p>
-            <CopyPastableSpan text="NODE_ENV" />: Set the environment to either{" "}
-            <CopyPastableSpan text="production" /> or
+            <CopyPastableSpan text="ENVIRONMENT" />: Set the environment to
+            either <CopyPastableSpan text="production" /> or
             <CopyPastableSpan text="development." />
           </p>
           <p>
