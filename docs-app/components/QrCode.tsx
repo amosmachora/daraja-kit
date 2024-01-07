@@ -2,6 +2,11 @@ import React from "react";
 import { APIItemTitle } from "./APIItemTitle";
 import { CopyPastableSpan } from "./CopyPastableSpan";
 import { CodeBlockWrapper } from "./CodeBlockWrapper";
+import {
+  BUSINESS_SHORT_CODE,
+  QRCodeDisplay,
+  ScannableQrParams,
+} from "react-daraja";
 
 export const QrCode = () => {
   const nextJSCodeExample = `
@@ -11,18 +16,21 @@ export const QrCode = () => {
     import { BUSINESS_SHORT_CODE } from "react-daraja";
 
     export const QRCodeExample = () => {
-    const scannableQRParams: ScannableQrParams = {
+      
+      const qrCodeParams: ScannableQrParams = {
         Amount: 100,
         CPI: BUSINESS_SHORT_CODE,
-        MerchantName: "KISS KISS Adventures",
-        RefNo: "Your REF NO",
-        Size: "100", //square pixels,
-        TrxCode: "BG", //for buy goods. others are "BG" | "WA" | "PB" | "SM" | "SB",
-    };
+        MerchantName: "React daraja docs",
+        RefNo: "REF100",
+        Size: "100",
+        TrxCode: "PB",
+      };
 
     return (
-      <>    
-          <QRCodeDisplay scannableQRParams={scannableQRParams} />
+      <> 
+        <div className="w-[100px] aspect-square mt-5 mx-auto">
+      <QRCodeDisplay scannableQRParams={qrCodeParams} />
+        </div>
       </>
       );
 };`;
@@ -83,7 +91,9 @@ export const QrCode = () => {
       return (
         <>
           {qrString ? (
-            <QRCodeDisplayReact qrString={qrString} />
+            <div className="w-[100px] aspect-square mt-5 mx-auto">
+              <QRCodeDisplayReact qrString={qrString} />
+            </div>
           ) : (
             "show loading spinner or something"
           )}
@@ -95,6 +105,15 @@ export const QrCode = () => {
 
   `;
 
+  const qrCodeParams: ScannableQrParams = {
+    Amount: 100,
+    CPI: BUSINESS_SHORT_CODE,
+    MerchantName: "React daraja docs",
+    RefNo: "REF100",
+    Size: "100",
+    TrxCode: "PB",
+  };
+
   return (
     <section>
       <APIItemTitle text="QR Code" />
@@ -104,6 +123,15 @@ export const QrCode = () => {
         the library to display a QRcode on your website that people will scan to
         pay. Example
       </p>
+      <p className="mt-5">
+        Here is an example of a qrcode created by the library in NextJS.{" "}
+        <span className="italic text-sm">
+          PS: I used the library to generate the QRCode
+        </span>
+      </p>
+      <div className="w-[100px] aspect-square mt-5 mx-auto">
+        <QRCodeDisplay scannableQRParams={qrCodeParams} />
+      </div>
       <CodeBlockWrapper code={nextJSCodeExample} />
       <div className="mt-5">
         Now if you use vanilla react i.e create-react-app or vite maybe you can

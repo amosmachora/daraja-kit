@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: ["https://react-daraja.vercel.app/ross.jpeg"],
   },
+  metadataBase: new URL("https://react-daraja.vercel.app"),
 };
 
 export default function RootLayout({
