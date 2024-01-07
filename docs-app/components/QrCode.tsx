@@ -8,6 +8,8 @@ import {
   ScannableQrParams,
 } from "react-daraja";
 
+export const dynamic = "force-dynamic";
+
 export const QrCode = () => {
   const nextJSCodeExample = `
     import React from "react";
