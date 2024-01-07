@@ -131,9 +131,9 @@ export const QrCode = () => {
           PS: I used the library to generate the QRCode
         </span>
       </p>
-      <div className="w-[100px] aspect-square mt-5 mx-auto">
+      {/* <div className="w-[100px] aspect-square mt-5 mx-auto">
         <QRCodeDisplay scannableQRParams={qrCodeParams} />
-      </div>
+      </div> */}
       <CodeBlockWrapper code={nextJSCodeExample} />
       <div className="mt-5">
         Now if you use vanilla react i.e create-react-app or vite maybe you can
