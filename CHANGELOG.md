@@ -1,5 +1,15 @@
 # react-daraja
 
+## 0.2.0
+
+### Minor Changes
+
+- 375ee45: opted out of a more tricky NODE.ENV for ENVIRONMENT
+
+### Patch Changes
+
+- 301d2f9: act seconds to an hour
+
 ## 0.1.9
 
 ### Patch Changes
