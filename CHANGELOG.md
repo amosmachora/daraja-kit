@@ -1,5 +1,11 @@
 # react-daraja
 
+## 0.1.9
+
+### Patch Changes
+
+- 7a3723d: fixed qrcode server component undefined error
+
 ## 0.1.8
 
 ### Patch Changes
