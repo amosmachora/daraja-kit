@@ -14,7 +14,7 @@ To install React Daraja, run the following command in your project's terminal:
 
 Before using the library, make sure to set up the required environment variables in the .env file. These variables include:
 
-- **NODE_ENV**: Set the environment to either "production" or "development."
+- **ENVIRONMENT**: Set the environment to either "production" or "development."
 
 - **MPESA_CONSUMER_KEY**: Consumer Key obtained from Safaricom Daraja.
 

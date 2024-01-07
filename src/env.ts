@@ -1,6 +1,6 @@
 export const ENVIRONMENT = assertValue(
-  process.env.NODE_ENV,
-  "Missing environment variable: NODE_ENV"
+  process.env.ENVIRONMENT,
+  "Missing environment variable: ENVIRONMENT"
 );
 
 export const BASE_URL =

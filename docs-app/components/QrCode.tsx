@@ -116,13 +116,6 @@ export const QrCode = () => {
     TrxCode: "PB",
   };
 
-  const val = process.env.NODE_ENV;
-  const ckk = process.env.MPESA_CONSUMER_KEY;
-  console.log({
-    val,
-    ckk,
-  });
-
   return (
     <section>
       <APIItemTitle text="QR Code" />
@@ -132,7 +125,7 @@ export const QrCode = () => {
         the library to display a QRcode on your website that people will scan to
         pay. Example
       </p>
-      {/* <p className="mt-5">
+      <p className="mt-5">
         Here is an example of a qrcode created by the library in NextJS.{" "}
         <span className="italic text-sm">
           PS: I used the library to generate the QRCode
@@ -140,7 +133,7 @@ export const QrCode = () => {
       </p>
       <div className="w-[100px] aspect-square mt-5 mx-auto">
         <QRCodeDisplay scannableQRParams={qrCodeParams} />
-      </div> */}
+      </div>
       <CodeBlockWrapper code={nextJSCodeExample} />
       <div className="mt-5">
         Now if you use vanilla react i.e create-react-app or vite maybe you can
