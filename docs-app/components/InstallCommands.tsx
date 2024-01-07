@@ -46,7 +46,7 @@ const Commands = ({ command }: { command: string }) => {
   return (
     <div className="py-3 px-5 rounded bg-gray-200 flex justify-between">
       <p>
-        <span className="text-red-500">
+        <span className="text-myPurple">
           {command.split(" ").slice(0, 2).join(" ")}
         </span>{" "}
         {command.split(" ").at(-1)}
@@ -54,7 +54,7 @@ const Commands = ({ command }: { command: string }) => {
       <FontAwesomeIcon
         icon={faCopy}
         onClick={() => navigator.clipboard.writeText(command)}
-        className="cursor-pointer"
+        className="cursor-pointer w-3 h-3"
       />
     </div>
   );

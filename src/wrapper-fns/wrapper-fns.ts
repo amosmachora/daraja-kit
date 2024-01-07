@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import {
   ScannableQrParams,
   ScannableQrCodeResponse,
@@ -29,7 +29,7 @@ export const fetchQrCode = async (
 ): Promise<ScannableQrCodeResponse> => {
   const { access_token } = await generateAccessToken();
   try {
-    const res: ScannableQrCodeResponse = await axios.post(
+    const res: AxiosResponse<ScannableQrCodeResponse> = await axios.post(
       `${BASE_URL}/mpesa/qrcode/v1/generate`,
       scannableQrParams,
       {
@@ -38,7 +38,7 @@ export const fetchQrCode = async (
         },
       }
     );
-    return res;
+    return res.data;
   } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
@@ -60,17 +60,18 @@ export const getStateOfALNMOnlinePayment = async (
   const password = generatePassword(BUSINESS_SHORT_CODE, PASSKEY, timestamp);
 
   try {
-    const res: StateOfALNMOnlinePaymentResponse = await axios.post(
-      `${BASE_URL}/mpesa/stkpushquery/v1/query`,
-      { ...stateOfALNMOnlinePaymentBody, password },
-      {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      }
-    );
+    const res: AxiosResponse<StateOfALNMOnlinePaymentResponse> =
+      await axios.post(
+        `${BASE_URL}/mpesa/stkpushquery/v1/query`,
+        { ...stateOfALNMOnlinePaymentBody, password },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
 
-    return res;
+    return res.data;
   } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
@@ -84,7 +85,7 @@ export const registerC2BUrl = async (
   const { access_token } = await generateAccessToken();
 
   try {
-    const res: RegisterUrlResponse = await axios.post(
+    const res: AxiosResponse<RegisterUrlResponse> = await axios.post(
       `${BASE_URL}/mpesa/c2b/v1/registerurl`,
       {
         ...registerUrlBody,
@@ -97,7 +98,7 @@ export const registerC2BUrl = async (
       }
     );
 
-    return res;
+    return res.data;
   } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
@@ -111,7 +112,7 @@ export const b2cPaymentRequest = async (
   const { access_token } = await generateAccessToken();
 
   try {
-    const res: B2CRequestResponse = await axios.post(
+    const res: AxiosResponse<B2CRequestResponse> = await axios.post(
       `${BASE_URL}/mpesa/b2c/v1/paymentrequest`,
       b2CBody,
       {
@@ -120,7 +121,7 @@ export const b2cPaymentRequest = async (
         },
       }
     );
-    return res;
+    return res.data;
   } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
@@ -134,7 +135,7 @@ export const b2bPaymentRequest = async (
   const { access_token } = await generateAccessToken();
 
   try {
-    const res: BusinessRequestResponse = await axios.post(
+    const res: AxiosResponse<BusinessRequestResponse> = await axios.post(
       `${BASE_URL}/mpesa/b2b/v1/paymentrequest`,
       body,
       {
@@ -143,7 +144,7 @@ export const b2bPaymentRequest = async (
         },
       }
     );
-    return res;
+    return res.data;
   } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
@@ -157,7 +158,7 @@ export const getTransactionStatus = async (
   const { access_token } = await generateAccessToken();
 
   try {
-    const res: TransactionStatusResponse = await axios.post(
+    const res: AxiosResponse<TransactionStatusResponse> = await axios.post(
       `${BASE_URL}/mpesa/transactionstatus/v1/query`,
       transactionStatusBody,
       {
@@ -166,7 +167,7 @@ export const getTransactionStatus = async (
         },
       }
     );
-    return res;
+    return res.data;
   } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
@@ -180,7 +181,7 @@ export const getAccountBalance = async (
   const { access_token } = await generateAccessToken();
 
   try {
-    const res: AccountBalanceResponse = await axios.post(
+    const res: AxiosResponse<AccountBalanceResponse> = await axios.post(
       `${BASE_URL}/mpesa/accountbalance/v1/query`,
       accountBalance,
       {
@@ -189,7 +190,7 @@ export const getAccountBalance = async (
         },
       }
     );
-    return res;
+    return res.data;
   } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
@@ -203,7 +204,7 @@ export const reverseC2BTransaction = async (
   const { access_token } = await generateAccessToken();
 
   try {
-    const res: ReverseC2BTransactionResponse = await axios.post(
+    const res: AxiosResponse<ReverseC2BTransactionResponse> = await axios.post(
       `${BASE_URL}/mpesa/reversal/v1/request`,
       body,
       {
@@ -212,7 +213,7 @@ export const reverseC2BTransaction = async (
         },
       }
     );
-    return res;
+    return res.data;
   } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
@@ -226,7 +227,7 @@ export const remitTax = async (
   const { access_token } = await generateAccessToken();
 
   try {
-    const res: TaxRemittanceResponse = await axios.post(
+    const res: AxiosResponse<TaxRemittanceResponse> = await axios.post(
       `${BASE_URL}/mpesa/b2b/v1/remittax`,
       body,
       {
@@ -235,7 +236,7 @@ export const remitTax = async (
         },
       }
     );
-    return res;
+    return res.data;
   } catch (err: any) {
     throw new Error(
       `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
@@ -247,13 +248,13 @@ export const b2bExpressCheckout = async (data: B2BExpressCheckoutBody) => {
   const { access_token } = await generateAccessToken();
 
   try {
-    const res = axios.post(`${BASE_URL}/v1/ussdpush/get-msisdn`, data, {
+    const res = await axios.post(`${BASE_URL}/v1/ussdpush/get-msisdn`, data, {
       headers: {
         Authorization: `Bearer ${access_token}`,
       },
     });
 
-    return res;
+    return res.data;
   } catch (error) {
     const err = error as AxiosError;
     console.error(error);

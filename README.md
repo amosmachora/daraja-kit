@@ -1,6 +1,6 @@
 # React Daraja
 
-React Daraja is a typesafe Javascript library designed to simplify interactions with the Safaricom Daraja API, specifically for STK push requests. This library is suitable for both Node.js and React environments, allowing developers to seamlessly integrate M-Pesa payments into their applications.
+React Daraja is a typesafe Javascript library designed to simplify interactions with the Safaricom Daraja API. This library is suitable for both Node.js and React environments, allowing developers to seamlessly integrate M-Pesa payments into their applications.
 
 ## Installation
 
