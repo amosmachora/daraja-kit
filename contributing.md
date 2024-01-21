@@ -14,7 +14,6 @@ Make your code changes or additions in your local repository. Before committing 
 
 ```bash
 npx changeset
-
 ```
 
 This command will prompt you to select the type of change you are making (patch, minor, major), and it will create a changeset file.
@@ -28,6 +27,10 @@ Navigate to the .changeset directory and open the generated changeset file. Fill
 ### Step 3: Commit and Push
 
 Commit your changes and the generated changeset file. Push your changes to your fork or branch. When your pull request is merged, the changeset will be used to create a release.
+
+## step 4: If you are too lazy
+
+If you feel like those are too many steps just create a normal PR and i will handle the changeset things.
 
 ## Releasing Changes
 

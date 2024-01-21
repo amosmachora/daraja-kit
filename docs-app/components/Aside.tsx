@@ -8,6 +8,7 @@ export const links = [
   { text: "introduction", link: "/" },
   { text: "installation", link: "/installation" },
   { text: "api", link: "/api" },
+  { text: "utils", link: "/utils" },
 ];
 
 export const Aside = () => {

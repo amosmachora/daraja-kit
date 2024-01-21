@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import {
-  ScannableQrParams,
+  ScannableQrParamsInternal,
   ScannableQrCodeResponse,
   StateOfALNMOnlinePaymentBody,
   StateOfALNMOnlinePaymentResponse,
@@ -25,7 +25,7 @@ import { generateAccessToken } from "./access-token";
 import { BASE_URL, BUSINESS_SHORT_CODE, PASSKEY } from "../env";
 
 export const fetchQrCode = async (
-  scannableQrParams: ScannableQrParams
+  scannableQrParams: ScannableQrParamsInternal
 ): Promise<ScannableQrCodeResponse> => {
   const { access_token } = await generateAccessToken();
   try {
@@ -55,9 +55,7 @@ export const getStateOfALNMOnlinePayment = async (
   stateOfALNMOnlinePaymentBody: StateOfALNMOnlinePaymentParam
 ): Promise<StateOfALNMOnlinePaymentResponse> => {
   const { access_token } = await generateAccessToken();
-
-  const timestamp = generateTimestamp();
-  const password = generatePassword(BUSINESS_SHORT_CODE, PASSKEY, timestamp);
+  const password = generatePassword();
 
   try {
     const res: AxiosResponse<StateOfALNMOnlinePaymentResponse> =

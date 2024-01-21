@@ -27,7 +27,7 @@ export type BusinessShortCode = string;
 /**
  * Scannable QR Parameters
  */
-export interface ScannableQrParams {
+export interface ScannableQrParamsInternal {
   /**
    * Name of the Company/M-Pesa Merchant Name
    */
