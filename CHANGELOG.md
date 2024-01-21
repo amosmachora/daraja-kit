@@ -1,5 +1,11 @@
 # react-daraja
 
+## 0.2.1
+
+### Patch Changes
+
+- 8c8bc48: added better export functions for utils for easier migration. Improved the DX for the QRCode calls
+
 ## 0.2.0
 
 ### Minor Changes
