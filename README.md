@@ -1,5 +1,11 @@
 # React Daraja
 
+Improving the Developer Experience of using the Safaricom daraja API.
+
+![image info](./public/full-logo.png)
+
+# About
+
 React Daraja is a typesafe Javascript library designed to simplify interactions with the Safaricom Daraja API. This library is suitable for both Node.js and React environments, allowing developers to seamlessly integrate M-Pesa payments into their applications.
 
 ## Installation
@@ -33,41 +39,13 @@ Before using the library, make sure to set up the required environment variables
 
 The library throws errors if any of this values are missing from your .env file.
 
-## Usage/Examples
+## Benefits
 
-- **STK Push Request**
-
-It allows you to initiate an STK push request for M-Pesa payments in **node**. Here is an example of how to use it:
-
-```javascript
-import { stkPushRequest } from "react-daraja";
-
-const makeSTKPushRequest = async () => {
-  try {
-    const response = await stkPushRequest({
-      phoneNumber: "254719428019",
-      amount: "100",
-      callbackURL: "https://example.com/api/stk-push-callback",
-      transactionDesc: "Payment for your service",
-      accountReference: "user123@example.com",
-    });
-
-    console.log("STK Push Request Successful:", response);
-  } catch (error) {
-    console.error("Error:", error.message);
-  }
-};
-
-makeSTKPushRequest();
-```
-
-and thats it!. The library handles access tokens etc and caches them gracefully.
-
-Make sure to replace the placeholder values with your actual data.
-
-Note: Ensure that your environment variables are correctly set, and the provided values match your Safaricom Daraja account configuration.
-
-Don`t call stkPushRequest from the frontend though. You wil run into all forms of cors errors.
+- Cached access tokens to minimize network requests and improve performance.
+- Way simpler API over using daraja on your own.
+- Open source!
+- Slow integration. You don`t have to hot swap this library. You can easily integrate it to your app.
+- More Util Functions. If you need to generate passwords if you have decided to slowly integrate the app offers helper functions to help you move along nicely. e.g generateTimestamp and generatePassword.
 
 ## Compatibility
 

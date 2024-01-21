@@ -5,7 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { twMerge } from "tailwind-merge";
 import { fetchQrCode } from "../wrapper-fns/wrapper-fns";
-import { ScannableQrParams } from "../types/types";
+import { ScannableQrParamsInternal } from "../types/types";
+import { BUSINESS_SHORT_CODE } from "../env";
+
+export type ScannableQrParams = Omit<ScannableQrParamsInternal, "CPI">;
 
 export const QRCodeDisplay = async ({
   className,
@@ -14,7 +17,10 @@ export const QRCodeDisplay = async ({
   className?: string;
   scannableQRParams: ScannableQrParams;
 }) => {
-  const res = await fetchQrCode(scannableQRParams);
+  const res = await fetchQrCode({
+    ...scannableQRParams,
+    CPI: BUSINESS_SHORT_CODE,
+  });
   const { QRCode } = res;
 
   return (

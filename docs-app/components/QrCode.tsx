@@ -19,7 +19,6 @@ export const QrCode = () => {
       
       const qrCodeParams: ScannableQrParams = {
         Amount: 100,
-        CPI: BUSINESS_SHORT_CODE,
         MerchantName: "React daraja docs",
         RefNo: "REF100",
         Size: "100",

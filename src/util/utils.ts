@@ -1,3 +1,5 @@
+import { BUSINESS_SHORT_CODE, PASSKEY } from "../env";
+
 /**
  * Generates a timestamp in the format of YEAR+MONTH+DATE+HOUR+MINUTE+SECOND (YYYYMMDDHHMMSS).
  * @returns {string} Timestamp in the specified format.
@@ -15,11 +17,12 @@ export function generateTimestamp(): string {
   return `${year}${month}${date}${hours}${minutes}${seconds}`;
 }
 
-export const generatePassword = (
-  businessShortCode: string,
-  passkey: string,
-  timestamp: string
-): string => {
+export const generatePassword = (): string => {
+  const businessShortCode = BUSINESS_SHORT_CODE;
+  const passkey = PASSKEY;
+
+  const timestamp = generateTimestamp();
+
   const concatenatedString = `${businessShortCode}${passkey}${timestamp}`;
 
   // Check if the environment is Node.js

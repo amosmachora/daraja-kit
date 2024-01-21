@@ -1,1 +1,1 @@
-export { QRCodeDisplay } from "./QRCodeDisplay";
+export { QRCodeDisplay, ScannableQrParams } from "./QRCodeDisplay";
