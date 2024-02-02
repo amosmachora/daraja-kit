@@ -1,6 +1,6 @@
 import React from "react";
 import { APIItemTitle } from "./APIItemTitle";
-import { CopyPastableSpan } from "./CopyPastableSpan";
+import { CopyPastableSpan } from "./CopyPastableSpan"
 
 export const AccountBalance = () => {
   return (

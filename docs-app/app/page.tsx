@@ -3,15 +3,16 @@ import Image from "next/image";
 import maple from "../public/maple.jpeg";
 import { NextPage } from "@/components/NextPage";
 import SmoothScroll from "@/components/SmoothScroll";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Home() {
   return (
-    <main className="w-4/5 p-5">
+    <main className="w-4/5 p-5 dark:bg-dark">
       <PageNavSmall />
       <h1 className="h1">Introduction</h1>
       <Image
         src={maple}
-        className="w-full h-[30vh] object-cover mt-5"
+        className="w-full h-[30vh] object-cover mt-5 dark:bg-dark"
         alt="maple"
       />
       <p className="mt-5">

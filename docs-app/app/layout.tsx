@@ -29,9 +29,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} h-screen flex flex-col`}>
+      <body className={`${poppins.className} h-screen flex flex-col dark:bg-dark`}>
         <Nav />
-        <div className="flex h-[92%] w-full">
+        <div className="flex h-[92%] w-full dark:bg-dark">
           <Aside />
           {children}
         </div>

@@ -3,10 +3,10 @@
 import { faCopy } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const tabs = ["npm", "pnpm", "yarn"];
-
-export const InstallCommands = () => {
+export const InstallCommands = ({ darkMode }: { darkMode: boolean }) => {
   const [activeTab, setActiveTab] = useState<"npm" | "pnpm" | "yarn">("npm");
 
   const command = (() => {
@@ -21,7 +21,7 @@ export const InstallCommands = () => {
   })();
 
   return (
-    <div className="mt-5">
+    <div className={`mt-5 ${darkMode ? 'dark:text-dark' : ''}`}>
       <div className="flex gap-x-5 mb-3">
         {tabs.map((tab) => (
           <p
@@ -29,7 +29,7 @@ export const InstallCommands = () => {
             className={`${
               activeTab === tab &&
               "text-myPurple border-b-2 border-myPurple font-semibold"
-            } hover:bg-gray-100 cursor-pointer p-3 rounded font-semibold text-sm`}
+            } hover:bg-gray-400 cursor-pointer p-3 rounded font-semibold text-sm`}
             //   @ts-ignore
             onClick={() => setActiveTab(tab)}
           >
@@ -44,7 +44,7 @@ export const InstallCommands = () => {
 
 const Commands = ({ command }: { command: string }) => {
   return (
-    <div className="py-3 px-5 rounded bg-gray-200 flex justify-between">
+    <div className="py-3 px-5 rounded bg-gray-200 flex justify-between dark:bg-gray-800">
       <p>
         <span className="text-myPurple">
           {command.split(" ").slice(0, 2).join(" ")}

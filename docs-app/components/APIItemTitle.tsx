@@ -11,7 +11,7 @@ export const APIItemTitle = ({ text }: { text: string }) => {
       onMouseLeave={() => setHovered(false)}
       className="flex gap-x-2"
     >
-      <p className="bg-gray-100 font-semibold border px-2">{text}</p>
+      <p className="bg-gray-100 font-semibold border px-2 dark:bg-gray-600">{text}</p>
       {hovered && (
         <button
           className="text-myPurple hover:underline"

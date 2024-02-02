@@ -15,7 +15,7 @@ export const Aside = () => {
   const pathName = usePathname();
 
   return (
-    <aside className="p-1 w-1/6 flex flex-col border-r text-sm text-[#606770]">
+    <aside className="p-1 w-1/6 flex flex-col border-r text-sm text-[#606770] dark:text-white">
       {links.map((l) => {
         const isActive =
           pathName.includes(l.text) ||
@@ -26,7 +26,7 @@ export const Aside = () => {
             href={l.link}
             key={l.text}
             className={`capitalize px-6 py-1 mb-2 ${
-              isActive && "text-[#dd4add] bg-[#f2f2f2] rounded"
+              isActive && "text-[#dd4add] bg-[#f2f2f2] rounded dark:bg-gray-500"
             }`}
           >
             {l.text}

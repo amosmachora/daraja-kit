@@ -7,6 +7,7 @@ import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Metadata } from "next";
 import React from "react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export const metadata: Metadata = {
   title: "Installation",
@@ -64,7 +65,7 @@ const Page = () => {
           The library throws errors if any of this values are missing from your
           .env file.
         </p>
-        <div className="mt-8 rounded-md overflow-clip bg-blue-200 flex">
+        <div className="mt-8 rounded-md overflow-clip bg-blue-200 flex dark:bg-gray-700">
           <div className="bg-blue-500 w-2" />
           <div className="p-5">
             <div className="flex items-center gap-x-2 text-sm">
@@ -72,7 +73,7 @@ const Page = () => {
               <p className="font-semibold text-base">INFO</p>
             </div>
             React Daraja has a peer dependency on React 18. If you use the node
-            apis you don`t need to have react installed.
+            APIs, you don`t need to have react installed.
           </div>
         </div>
         <h2 className="mt-8" id="basic-usage">
@@ -80,7 +81,7 @@ const Page = () => {
         </h2>
         <p className="text-sm mt-5">
           The library consists of a collection of typescript functions, types
-          and some react components. To use them just import the function you
+          and some react components. To use them, import the function you
           want from the library and use it in your app.
         </p>
         <NextPage nextHref="api" prevHref="introduction" />
@@ -90,7 +91,7 @@ const Page = () => {
         {links.map((l) => (
           <a
             href={`https://react-daraja.vercel.app/installation#${l}`}
-            className="bg-gray-100 text-sm font-semibold px-2 hover:text-myPurple ml-2 overflow-clip"
+            className="bg-gray-100 text-sm font-semibold px-2 hover:text-myPurple ml-2 overflow-clip dark:bg-gray-600"
             key={l}
           >
             {l.replace("-", " ")}
