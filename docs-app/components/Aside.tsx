@@ -15,7 +15,7 @@ export const Aside = () => {
   const pathName = usePathname();
 
   return (
-    <aside className="p-1 w-1/6 flex flex-col border-r text-sm text-[#606770] dark:text-white">
+    <aside className="p-1 w-1/6 flex flex-col border-r text-sm text-[#606770] dark:bg-dark dark:text-white">
       {links.map((l) => {
         const isActive =
           pathName.includes(l.text) ||

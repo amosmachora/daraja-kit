@@ -18,14 +18,14 @@ const links = ["installation", "basic-usage"];
 const Page = () => {
   return (
     <>
-      <ScrollArea className="w-4/6 h-full p-5">
+      <ScrollArea className="w-4/6 h-full p-5 dark: bg-dark">
         <PageNavSmall />
         <h1 id="installation">Installation</h1>
         <p className="mt-5">
           In the directory containing package.json, run your package manager`s
           install command:
         </p>
-        <InstallCommands />
+        <InstallCommands darkMode={true}/>
         <p className="mt-5">
           Before using the library, make sure to set up the required environment
           variables in the .env file. These variables include:

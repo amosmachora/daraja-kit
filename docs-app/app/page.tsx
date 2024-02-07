@@ -3,7 +3,6 @@ import Image from "next/image";
 import maple from "../public/maple.jpeg";
 import { NextPage } from "@/components/NextPage";
 import SmoothScroll from "@/components/SmoothScroll";
-import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Home() {
   return (

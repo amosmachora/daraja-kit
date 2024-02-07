@@ -8,7 +8,7 @@ import ThemeToggle from "./ThemeToggle";
 
 export const Nav = () => {
   return (
-    <nav className="flex items-center px-6 justify-between border-b-2 py-3 h-[8%] dark:dark">
+    <nav className="flex items-center px-6 justify-between border-b-2 py-3 h-[8%] dark:bg-dark">
       <Link href="/" className="flex gap-x-3 items-center">
         <Image src={logo} alt="logo" className="h-10 w-10 object-cover" />
         <p className="font-semibold text-sm">React Daraja Docs</p>
