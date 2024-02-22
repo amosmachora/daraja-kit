@@ -1,2 +1,5 @@
 node_modules/
 dist
+
+*lock.json
+*lock.yaml

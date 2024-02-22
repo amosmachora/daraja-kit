@@ -41,6 +41,14 @@ Before using the library, make sure to set up the required environment variables
 
 The library throws errors if any of this values are missing from your .env file.
 
+### Running Tests
+
+Make sure to run the tests to verify the functionality:
+
+```bash
+npm run test
+```
+
 ## Benefits
 
 - Cached access tokens to minimize network requests and improve performance.
