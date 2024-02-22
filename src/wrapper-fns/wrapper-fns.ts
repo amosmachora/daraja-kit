@@ -173,6 +173,15 @@ export const b2bPaymentRequest = async (
   }
 };
 
+/**
+ * The function `getTransactionStatus` sends a POST request to query transaction status using an access
+ * token obtained from `generateAccessToken`.
+ * @param {TransactionStatusBody} transactionStatusBody - The `transactionStatusBody` parameter in the
+ * `getTransactionStatus` function is an object that contains the necessary information to query the
+ * status of a transaction. 
+ * @returns The `getTransactionStatus` function is returning a Promise that resolves to a
+ * `TransactionStatusResponse` object.
+ */
 export const getTransactionStatus = async (
   transactionStatusBody: TransactionStatusBody
 ): Promise<TransactionStatusResponse> => {
