@@ -3,3 +3,5 @@ dist
 
 *lock.json
 *lock.yaml
+
+coverage/
