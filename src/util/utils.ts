@@ -45,7 +45,7 @@ export const generatePassword = (): string => {
  *
  * @return A boolean
  *
- * @docauthor geoffreynyaga
+ * @docauthor @geoffreynyaga
  */
 
 export const isValidHttpsUrl = (url: string): boolean => {

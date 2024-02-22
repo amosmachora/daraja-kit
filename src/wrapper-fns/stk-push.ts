@@ -22,6 +22,17 @@ export type STKPushRequestParam = {
     accountReference: AccountReference;
 };
 
+/**
+ * The function `stkPushRequest` in TypeScript handles the process of initiating an STK push request
+ * for a payment transaction with various validations and error handling.
+ * @param {STKPushRequestParam}  - The `stkPushRequest` function is responsible for initiating a
+ * Safaricom Daraja STK push request. Here is an explanation of the parameters it expects:
+ * @returns The function `stkPushRequest` is returning the data received from the POST request made to
+ * the MPESA API for processing a STK push request. The data returned is of type `STKPushResponse`,
+ * which likely contains information about the status of the STK push request.
+ * * @docauthor @geoffreynyaga
+ */
+
 export const stkPushRequest = async ({
     phoneNumber,
     amount,
