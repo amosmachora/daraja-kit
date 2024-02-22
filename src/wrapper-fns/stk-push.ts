@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   AccountReference,
   Amount,
@@ -8,9 +7,11 @@ import {
   STKPushResponse,
   TransactionDesc,
   TransactionType,
-} from "../types/types";
-import { generateTimestamp, generatePassword } from "../util/utils";
+} from "../types";
 import { BASE_URL, BUSINESS_SHORT_CODE, ENVIRONMENT, PASSKEY } from "../env";
+import { generatePassword, generateTimestamp } from "../util/utils";
+
+import axios from "axios";
 import { generateAccessToken } from "./access-token";
 
 export type STKPushRequestParam = {
@@ -28,6 +29,25 @@ export const stkPushRequest = async ({
   transactionDesc,
   accountReference,
 }: STKPushRequestParam) => {
+
+
+  // check if transactionDesc and accountReference are correct lengths
+  if (transactionDesc.length > 13 ){
+    throw new Error ('transactionDesc should less than 13 characters');
+  }
+  if (accountReference.length > 12 ){
+    throw new Error ('accountReference should less than 13 characters');
+  }
+
+  if (parseInt(accountReference) < 1 || parseInt(accountReference) > 200000 ){
+    throw new Error ('Amount should be more than zero and less than 200000');
+  }
+
+  if (phoneNumber.startsWith("254") === false ){
+    throw new Error ('Phone number should start with 254');
+  }
+
+
   try {
     const timestamp = generateTimestamp();
 

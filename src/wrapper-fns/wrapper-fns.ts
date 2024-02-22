@@ -1,29 +1,40 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
 import {
-  ScannableQrParamsInternal,
-  ScannableQrCodeResponse,
-  StateOfALNMOnlinePaymentBody,
-  StateOfALNMOnlinePaymentResponse,
-  RegisterUrlBody,
-  RegisterUrlResponse,
+  AccountBalanceBody,
+  AccountBalanceResponse,
+  B2BExpressCheckoutBody,
   B2CRequestBody,
   B2CRequestResponse,
   BusinessRequestBody,
   BusinessRequestResponse,
-  TransactionStatusBody,
-  TransactionStatusResponse,
-  AccountBalanceBody,
-  AccountBalanceResponse,
+  RegisterUrlBody,
+  RegisterUrlResponse,
   ReverseC2BTransactionBody,
   ReverseC2BTransactionResponse,
+  ScannableQrCodeResponse,
+  ScannableQrParamsInternal,
+  StateOfALNMOnlinePaymentBody,
+  StateOfALNMOnlinePaymentResponse,
   TaxRemittanceBody,
   TaxRemittanceResponse,
-  B2BExpressCheckoutBody,
-} from "../types/types";
-import { generateTimestamp, generatePassword } from "../util/utils";
-import { generateAccessToken } from "./access-token";
+  TransactionStatusBody,
+  TransactionStatusResponse,
+} from "../types";
 import { BASE_URL, BUSINESS_SHORT_CODE, PASSKEY } from "../env";
+import axios, { AxiosError, AxiosResponse } from "axios";
+import { generatePassword, generateTimestamp } from "../util/utils";
 
+import { generateAccessToken } from "./access-token";
+
+/**
+  * The fetchQrCode function generates a scannable QR code for the user to scan and pay.
+  * 
+  *
+  * @param scannableQrParams: ScannableQrParamsInternal Pass in the parameters required to generate a scannable qr code
+  *
+  * @return A promise
+  *
+  * @docauthor geoffreynyaga
+  */
 export const fetchQrCode = async (
   scannableQrParams: ScannableQrParamsInternal
 ): Promise<ScannableQrCodeResponse> => {
@@ -51,6 +62,18 @@ export type StateOfALNMOnlinePaymentParam = Omit<
   "password"
 >;
 
+/**
+ * This  function sends a POST request to query the state of an LNM online payment using
+ * M-Pesa STK push.
+ * @param {StateOfALNMOnlinePaymentParam} stateOfALNMOnlinePaymentBody - The
+ *  BusinessShortCode: string;
+    Password: string;
+    Timestamp: string;
+    CheckoutRequestID: string;
+ * @returns The function `getStateOfALNMOnlinePayment` is returning a Promise that resolves to a
+ * `StateOfALNMOnlinePaymentResponse` object.
+ * @docauthor geoffreynyaga
+ */
 export const getStateOfALNMOnlinePayment = async (
   stateOfALNMOnlinePaymentBody: StateOfALNMOnlinePaymentParam
 ): Promise<StateOfALNMOnlinePaymentResponse> => {

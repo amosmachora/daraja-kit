@@ -1,6 +1,6 @@
 import "../index.css";
 
-export * from "./types/types";
+export * from "./types";
 export * from "./wrapper-fns";
 export * from "./env";
 export * from "./util";
