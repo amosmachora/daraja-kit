@@ -1,71 +1,102 @@
-import axios from "axios";
 import {
-  AccountReference,
-  Amount,
-  CallBackURL,
-  PhoneNumber,
-  STKPushBody,
-  STKPushResponse,
-  TransactionDesc,
-  TransactionType,
-} from "../types/types";
-import { generateTimestamp, generatePassword } from "../util/utils";
-import { BASE_URL, BUSINESS_SHORT_CODE, ENVIRONMENT, PASSKEY } from "../env";
-import { generateAccessToken } from "./access-token";
+    AccountReference,
+    Amount,
+    CallBackURL,
+    PhoneNumber,
+    STKPushBody,
+    STKPushResponse,
+    TransactionDesc,
+    TransactionType,
+} from "../types";
+import {BASE_URL, BUSINESS_SHORT_CODE, ENVIRONMENT, PASSKEY} from "../env";
+import {generatePassword, generateTimestamp, isValidHttpsUrl} from "../util/utils";
+
+import axios from "axios";
+import {generateAccessToken} from "./access-token";
 
 export type STKPushRequestParam = {
-  phoneNumber: PhoneNumber;
-  amount: Amount;
-  callbackURL: CallBackURL;
-  transactionDesc: TransactionDesc;
-  accountReference: AccountReference;
+    phoneNumber: PhoneNumber;
+    amount: Amount;
+    callbackURL: CallBackURL;
+    transactionDesc: TransactionDesc;
+    accountReference: AccountReference;
 };
 
+/**
+ * The function `stkPushRequest` in TypeScript handles the process of initiating an STK push request
+ * for a payment transaction with various validations and error handling.
+ * @param {STKPushRequestParam}  - The `stkPushRequest` function is responsible for initiating a
+ * Safaricom Daraja STK push request. Here is an explanation of the parameters it expects:
+ * @returns The function `stkPushRequest` is returning the data received from the POST request made to
+ * the MPESA API for processing a STK push request. The data returned is of type `STKPushResponse`,
+ * which likely contains information about the status of the STK push request.
+ * * @docauthor @geoffreynyaga
+ */
+
 export const stkPushRequest = async ({
-  phoneNumber,
-  amount,
-  callbackURL,
-  transactionDesc,
-  accountReference,
+    phoneNumber,
+    amount,
+    callbackURL,
+    transactionDesc,
+    accountReference,
 }: STKPushRequestParam) => {
-  try {
-    const timestamp = generateTimestamp();
+    // check if transactionDesc and accountReference are correct lengths
+    if (transactionDesc.length > 13) {
+        throw new Error("transactionDesc should be less than 13 characters");
+    }
+    if (accountReference.length > 12) {
+        throw new Error("accountReference should be less than 13 characters");
+    }
 
-    const password = generatePassword();
+    if (parseInt(accountReference) < 1 || parseInt(accountReference) > 200000) {
+        throw new Error("Amount should be more than zero and less than 200000");
+    }
 
-    const stkPushBody: STKPushBody = {
-      BusinessShortCode: BUSINESS_SHORT_CODE!,
-      PartyB: BUSINESS_SHORT_CODE!,
-      Timestamp: timestamp,
-      Password: password,
-      PartyA: phoneNumber,
-      PhoneNumber: phoneNumber,
-      Amount: ENVIRONMENT === "production" ? amount : "1",
-      CallBackURL: callbackURL,
-      TransactionDesc: transactionDesc,
-      TransactionType: process.env
-        .MPESA_TRANSACTION_TYPE as unknown as TransactionType,
-      AccountReference: accountReference,
-    };
+    if (phoneNumber.startsWith("254") === false) {
+        throw new Error("Phone number should start with 254");
+    }
+    if (isValidHttpsUrl(callbackURL) === false) {
+        throw new Error("Callback URL must be a valid HTTPS URL");
+    }
 
-    const accessTokenResponse = await generateAccessToken();
+    try {
+        const timestamp = generateTimestamp();
 
-    const res = await axios.post<STKPushResponse>(
-      `${BASE_URL}/mpesa/stkpush/v1/processrequest`,
-      stkPushBody,
-      {
-        headers: {
-          Authorization: `Bearer ${accessTokenResponse.access_token}`,
-        },
-      }
-    );
+        const password = generatePassword();
 
-    return res.data;
-  } catch (err: any) {
-    console.error(err);
+        const stkPushBody: STKPushBody = {
+            BusinessShortCode: BUSINESS_SHORT_CODE!,
+            PartyB: BUSINESS_SHORT_CODE!,
+            Timestamp: timestamp,
+            Password: password,
+            PartyA: phoneNumber,
+            PhoneNumber: phoneNumber,
+            Amount: ENVIRONMENT === "production" ? amount : "1",
+            CallBackURL: callbackURL,
+            TransactionDesc: transactionDesc,
+            TransactionType: process.env
+                .MPESA_TRANSACTION_TYPE as unknown as TransactionType,
+            AccountReference: accountReference,
+        };
 
-    throw new Error(
-      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
-    );
-  }
+        const accessTokenResponse = await generateAccessToken();
+
+        const res = await axios.post<STKPushResponse>(
+            `${BASE_URL}/mpesa/stkpush/v1/processrequest`,
+            stkPushBody,
+            {
+                headers: {
+                    Authorization: `Bearer ${accessTokenResponse.access_token}`,
+                },
+            },
+        );
+
+        return res.data;
+    } catch (err: any) {
+        // console.error(err);
+
+        throw new Error(
+            `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`,
+        );
+    }
 };
