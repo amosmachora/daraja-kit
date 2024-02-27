@@ -8,8 +8,6 @@ Improving the Developer Experience of using the Safaricom daraja API.
 
 React Daraja is a typesafe Javascript library designed to simplify interactions with the Safaricom Daraja API. This library is suitable for both Node.js and React environments, allowing developers to seamlessly integrate M-Pesa payments into their applications.
 
-[![codecov](https://codecov.io/gh/amosmachora/react-daraja/branch/main/graph/badge.svg)](https://codecov.io/gh/amosmachora/react-daraja)
-
 ## Installation
 
 To install React Daraja, run the following command in your project's terminal:
@@ -40,14 +38,6 @@ Before using the library, make sure to set up the required environment variables
 - **MPESA_API_PASS_KEY**: Your M-Pesa API pass key. For sandbox use **bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919**
 
 The library throws errors if any of this values are missing from your .env file.
-
-### Running Tests
-
-Make sure to run the tests to verify the functionality:
-
-```bash
-npm run test
-```
 
 ## Benefits
 
