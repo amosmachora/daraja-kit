@@ -11,7 +11,7 @@ export type InitOptions = {
   consumerSecret: string;
 };
 
-export interface TAccessTokenResponse {
+export interface AccessTokenResponse {
   access_token: string;
   expires_in: string;
 }

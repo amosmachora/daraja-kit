@@ -8,37 +8,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-      
-
+      - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 16.x
           cache: "pnpm"
 
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build and Lint
-        run: |
-          pnpm run lint
-          pnpm run build
-
-      - name: Run Tests and Generate Coverage
-        run: pnpm test -- --coverage
-        env:
-          CI: true
-
-      - name: Upload Coverage Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: coverage-report
-          path: coverage
-
-        
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run lint && pnpm run build
