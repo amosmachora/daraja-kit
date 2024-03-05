@@ -1,7 +1,7 @@
 {
   "name": "daraja-kit",
   "version": "0.2.1",
-  "description": "A react library for interacting with Safaricom`s daraja APIs",
+  "description": "A node and react library for improving the dx of integrating with Safaricom`s daraja APIs",
   "main": "dist/index.js",
   "module": "dist/index.cjs",
   "types": "dist/index.d.ts",
