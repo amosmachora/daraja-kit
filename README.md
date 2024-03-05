@@ -13,12 +13,13 @@ React Daraja is a typesafe Javascript library designed to simplify interactions 
 To install React Daraja, run the following command in your project's terminal:
 
 ```bash
-  npm install react-daraja
+  npm install daraja-kit
 ```
 
 ## Getting Started
 
 Copy over the `.env.local` file into a `.env` file using the following command.
+
 ```
 cp .env.local .env
 ```

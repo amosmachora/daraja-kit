@@ -1,4 +1,4 @@
-# react-daraja
+# daraja-kit
 
 ## 0.2.1
 
