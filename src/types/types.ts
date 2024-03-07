@@ -1839,3 +1839,386 @@ export type B2BExpressCheckoutBody = {
    */
   RequestRefID: string;
 };
+
+/**
+ * This interface defines the body of a B2B Buy Goods request to the M-Pesa API.
+ */
+export interface B2BBuyGoodsBody {
+  /**
+   * For this API use "BusinessBuyGoods" only.
+   */
+  CommandID: "BusinessBuyGoods" | "BusinessPaybill";
+
+  /**
+   * The M-Pesa API operator username. This user needs Org Business Pay Bill API initiator role on M-Pesa.
+   */
+  Initiator: string;
+
+  /**
+   * The encrypted password of the M-Pesa API operator. The process for encrypting the initiator password has been described under docs. An online encryption tool is available under the test credentials section.
+   */
+  SecurityCredential: string;
+
+  /**
+   * The type of shortcode from which money is deducted. For this API, only "4" is allowed.
+   */
+  SenderIdentifierType: 4;
+
+  /**
+   * The type of shortcode to which money is credited. This API supports type 4 only.
+   */
+  RecieverIdentifierType: 4;
+
+  /**
+   * The transaction amount.
+   */
+  Amount: number;
+
+  /**
+   * The shortcode to which money will be moved.
+   */
+  PartyB: string;
+
+  /**
+   * The account number to be associated with the payment. Up to 13 characters.
+   */
+  AccountReference: string;
+
+  /**
+   * (Optional) The consumer’s mobile number on behalf of whom you are paying.
+   */
+  Requester?: string;
+
+  /**
+   * Any additional information to be associated with the transaction. Sentence of up to 100 characters.
+   */
+  Remarks: string;
+
+  /**
+   * A URL that will be used to notify your system in case the request times out before processing.
+   */
+  QueueTimeOutURL: string;
+
+  /**
+   * A URL that will be used to send transaction results after processing.
+   */
+  ResultURL: string;
+}
+
+/**
+ * This interface defines the response body of a B2B Buy Goods request from the M-Pesa API.
+ */
+export interface B2BBuyGoodsResponse {
+  /**
+   * Unique request identifier assigned by Daraja upon successful request submission.
+   */
+  OriginatorConversationID: string;
+
+  /**
+   * Unique request identifier assigned by M-Pesa upon successful request submission.
+   */
+  ConversationID: string;
+
+  /**
+   * Status code for request submission. 0 (zero) indicates successful submission.
+   */
+  ResponseCode: string;
+
+  /**
+   * A descriptive message of the request submission status.
+   */
+  ResponseDescription: string;
+}
+
+/**
+ * This interface defines the response body of a successful B2B Buy Goods request from the M-Pesa API.
+ */
+export interface B2BBuyGoodsAndPaybillSuccessfulResponse {
+  /**
+   * The root parameter encloses the entire result message.
+   */
+  Result: {
+    /**
+     * A status code indicating whether the transaction was already sent to your listener. The usual value is 0.
+     */
+    ResultType: string;
+
+    /**
+     * A transaction result status code. 0(zero) indicates successful processing.
+     */
+    ResultCode: string;
+
+    /**
+     * A descriptive message for the transaction result.
+     */
+    ResultDesc: string;
+
+    /**
+     * Unique request identifier assigned by M-Pesa upon successful request submission.
+     */
+    ConversationID: string;
+
+    /**
+     * Unique request identifier assigned by Daraja upon successful request submission.
+     */
+    OriginatorConversationID: string;
+
+    /**
+     * Unique M-PESA transaction ID for the payment request.
+     */
+    TransactionID: string;
+
+    /**
+     * This is a JSON object that holds more details for the transaction.
+     */
+    ResultParameters: {
+      /**
+       * A JSON array within the ResultParameters that holds additional transaction details as JSON objects.
+       */
+      ResultParameter: {
+        /**
+         * Key for the transaction detail.
+         */
+        Key: string;
+
+        /**
+         * Value for the transaction detail. Can be a string or a nested object.
+         */
+        Value:
+          | string
+          | {
+              Amount: {
+                CurrencyCode: string;
+                MinimumAmount: number;
+                BasicAmount: number;
+              };
+            };
+      }[];
+    };
+
+    /**
+     * This JSON object holds more details for the transaction reference data.
+     */
+    ReferenceData: {
+      /**
+       * A JSON array that holds JSON Objects with additional transaction details.
+       */
+      ReferenceItem: {
+        /**
+         * Key for the reference data.
+         */
+        Key: string;
+
+        /**
+         * Value for the reference data.
+         */
+        Value: string;
+      }[];
+    };
+  };
+}
+
+/**
+ * This interface defines the response body of a failed B2B Buy Goods request from the M-Pesa API.
+ */
+export interface B2BErrorResponse {
+  /**
+   * The root parameter encloses the entire result message.
+   */
+  Result: {
+    /**
+     * A status code indicating whether the transaction was already sent to your listener. The usual value is 0.
+     */
+    ResultType: string;
+
+    /**
+     * A transaction result status code. Non-zero values indicate processing errors.
+     */
+    ResultCode: "0";
+
+    /**
+     * A descriptive message for the transaction processing error.
+     */
+    ResultDesc: string;
+
+    /**
+     * Unique request identifier assigned by M-Pesa upon successful request submission.
+     */
+    ConversationID: string;
+
+    /**
+     * Unique request identifier assigned by Daraja upon successful request submission.
+     */
+    OriginatorConversationID: string;
+
+    /**
+     * Unique M-PESA transaction ID for the payment request. A generic value is passed for certain failure scenarios.
+     */
+    TransactionID: string;
+
+    /**
+     * This is a JSON object that may hold additional details for the transaction, but may be empty for some errors.
+     */
+    ResultParameters?: {
+      /**
+       * A JSON array within the ResultParameters that holds additional transaction details as JSON objects.
+       */
+      ResultParameter: {
+        /**
+         * Key for the transaction detail.
+         */
+        Key: string;
+
+        /**
+         * Value for the transaction detail.
+         */
+        Value: string;
+      }[];
+    };
+
+    /**
+     * This JSON object may hold additional details for the transaction reference data, but may be empty for some errors.
+     */
+    ReferenceData?: {
+      /**
+       * A JSON array that may hold JSON Objects with additional transaction details.
+       */
+      ReferenceItem?: {
+        /**
+         * Key for the reference data.
+         */
+        Key: string;
+
+        /**
+         * Value for the reference data.
+         */
+        Value: string;
+      }[];
+    };
+  };
+}
+
+/**
+ * This interface defines the data structure for Bill Manager opt-in request.
+ */
+export interface BillManagerOptin {
+  /**
+   * This is the official contact email address for the organization.
+   */
+  email: string;
+
+  /**
+   * This is the official contact phone number for the organization.
+   */
+  officialContact: string;
+
+  /**
+   * This field enables or disables SMS payment reminders for invoices sent (0 - disable, 1 - enable).
+   */
+  sendReminders: 0 | 1;
+
+  /**
+   * (Optional) Image to be embedded in invoices and receipts sent to customers. Must be in JPEG or JPG format.
+   */
+  logo?: string; // '?' indicates optional property
+
+  /**
+   * This URL will be invoked by the M-Pesa API to push payments made to your Paybill.
+   */
+  callbackurl: string;
+}
+
+/**
+ * This interface defines the response body of a Bill Manager opt-in request.
+ */
+export interface BillManagerOptInResponse {
+  /**
+   * This is the application key you receive upon onboarding your Paybill to the Daraja Platform.
+   */
+  app_key: string;
+
+  /**
+   * This is a message from the API that gives the status of the request processing.
+   */
+  resmsg: string;
+
+  /**
+   * This is a numeric status code that indicates the status of the opt-in request.
+   * 200 indicates success, other codes indicate errors.
+   */
+  rescode: string;
+}
+
+/**
+ * This interface defines the data structure for a single invoice request to Bill Manager.
+ */
+export interface BillManagerSingleInvoicingBody {
+  /**
+   * A unique invoice name on your system used for referencing between Bill Manager and your system. Must already exist, otherwise the invoice will not be sent.
+   */
+  externalReference: string;
+
+  /**
+   * The full name of the recipient to receive the invoice details. Will appear in the SMS sent.
+   */
+  billedFullName: string;
+
+  /**
+   * The phone number to receive invoice details via SMS. Must be a Safaricom number.
+   */
+  billedPhoneNumber: string;
+
+  /**
+   * The month and year of the billing period (e.g., "August 2021").
+   */
+  billedPeriod: string;
+
+  /**
+   * A descriptive invoice name for what the customer is being billed. Will appear in the invoice SMS sent to the customer.
+   */
+  invoiceName: string;
+
+  /**
+   * The date you expect the customer to have paid the invoice amount. Three reminders will be sent before the due date.
+   */
+  dueDate: string;
+
+  /**
+   * The account number being invoiced that uniquely identifies a customer (e.g., customer name, business name, property unit, student name).
+   */
+  accountReference: string;
+
+  /**
+   * The total invoice amount to be paid in Kenyan Shillings. No special characters (e.g., commas) allowed.
+   */
+  amount: number;
+
+  /**
+   * (Optional) An array of additional billable items to be included in the invoice. These will appear on the e-invoice.
+   */
+  invoiceItems?: {
+    itemName: string;
+    amount: number;
+  }[];
+}
+
+/**
+ * This interface defines the response body of a single invoice request to Bill Manager.
+ */
+export interface BillManagerSingleInvoicingResponse {
+  /**
+   * A descriptive message indicating the outcome of the invoice request.
+   */
+  Status_Message: string;
+
+  /**
+   * This is a message from the API that gives the status of the request processing.
+   */
+  resmsg: string;
+
+  /**
+   * This is a numeric status code that indicates the status of the invoice request.
+   * 200 indicates success, other codes indicate errors.
+   */
+  rescode: string;
+}

@@ -19,6 +19,12 @@ import {
   TaxRemittanceBody,
   TaxRemittanceResponse,
   B2BExpressCheckoutBody,
+  B2BBuyGoodsBody,
+  B2BBuyGoodsResponse,
+  BillManagerOptin,
+  BillManagerOptInResponse,
+  BillManagerSingleInvoicingBody,
+  BillManagerSingleInvoicingResponse,
 } from "../types/types";
 import { generateTimestamp, generatePassword } from "../util/utils";
 import { generateAccessToken } from "./access-token";
@@ -251,6 +257,87 @@ export const b2bExpressCheckout = async (data: B2BExpressCheckoutBody) => {
         Authorization: `Bearer ${access_token}`,
       },
     });
+
+    return res.data;
+  } catch (error) {
+    const err = error as AxiosError;
+    console.error(error);
+    throw new Error(
+      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
+    );
+  }
+};
+
+export const b2bBuyGoods = async (
+  data: B2BBuyGoodsBody
+): Promise<B2BBuyGoodsResponse> => {
+  const { access_token } = await generateAccessToken();
+  try {
+    const res = await axios.post(
+      `${BASE_URL}/mpesa/b2b/v1/paymentrequest`,
+      { ...data, PartyA: BUSINESS_SHORT_CODE },
+      {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      }
+    );
+
+    return res.data;
+  } catch (error) {
+    const err = error as AxiosError;
+    console.error(error);
+    throw new Error(
+      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
+    );
+  }
+};
+
+export const b2bPayBill = async (
+  data: B2BBuyGoodsBody
+): Promise<B2BBuyGoodsResponse> => {
+  return await b2bBuyGoods(data);
+};
+
+export const billManagerOptIn = async (
+  data: BillManagerOptin
+): Promise<BillManagerOptInResponse> => {
+  const { access_token } = await generateAccessToken();
+  try {
+    const res = await axios.post(
+      `${BASE_URL}/v1/billmanager-invoice/optin`,
+      { ...data, PartyA: BUSINESS_SHORT_CODE },
+      {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      }
+    );
+
+    return res.data;
+  } catch (error) {
+    const err = error as AxiosError;
+    console.error(error);
+    throw new Error(
+      `Error occurred with status code ${err.response?.status}, ${err.response?.statusText}`
+    );
+  }
+};
+
+export const billManagerSingleInvoicing = async (
+  data: BillManagerSingleInvoicingBody
+): Promise<BillManagerSingleInvoicingResponse> => {
+  const { access_token } = await generateAccessToken();
+  try {
+    const res = await axios.post(
+      `${BASE_URL}/v1/billmanager-invoice/single-invoicing`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      }
+    );
 
     return res.data;
   } catch (error) {
