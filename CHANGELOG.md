@@ -1,4 +1,14 @@
-# react-daraja
+# daraja-kit
+
+## 1.0.0
+
+### Major Changes
+
+- 36bff9f: Renamed react daraja to daraja-kit. Removed "react" from the library name to confuse as less users as possible. Lets go.
+
+  ## What to do.
+
+  Each time you now install react daraja. just change to `daraja-kit` and you will be fine.
 
 ## 0.2.1
 

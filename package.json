@@ -1,7 +1,7 @@
 {
-  "name": "react-daraja",
-  "version": "0.2.1",
-  "description": "A react library for interacting with Safaricom`s daraja APIs",
+  "name": "daraja-kit",
+  "version": "1.0.0",
+  "description": "A node and react library for improving the dx of integrating with Safaricom`s daraja APIs",
   "main": "dist/index.js",
   "module": "dist/index.cjs",
   "types": "dist/index.d.ts",
@@ -13,10 +13,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/amosmachora/react-daraja.git"
+    "url": "https://github.com/amosmachora/daraja-kit.git"
   },
   "keywords": [
-    "react-daraja",
+    "daraja-kit",
     "daraja",
     "daraja2.0",
     "safaricom"
@@ -28,9 +28,9 @@
   "author": "Amos Machora",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/amosmachora/react-daraja/issues"
+    "url": "https://github.com/amosmachora/daraja-kit/issues"
   },
-  "homepage": "https://github.com/amosmachora/react-daraja#readme",
+  "homepage": "https://github.com/amosmachora/daraja-kit#readme",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
