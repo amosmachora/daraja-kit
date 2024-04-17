@@ -1,5 +1,21 @@
 # daraja-kit
 
+## 1.0.2
+
+### Patch Changes
+
+- 49ade3b: added bill manager functions.
+
+  - billManagerOptIn
+  - billManagerSingleInvoicing
+  - billManagerBulkInvoicing
+  - billManagerReconciliation
+  - cancelSingleInvoicing
+  - cancelBulkInvoicing
+  - updateOptinDetails
+
+  With the new updates Daraja Kit now supports 100% of daraja APIs 🎉
+
 ## 1.0.1
 
 ### Patch Changes
