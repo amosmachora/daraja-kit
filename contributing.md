@@ -44,4 +44,4 @@ Changesets help manage versioning and releases. Whenever you commit the generate
 
 To contribute to the documentation check out the [repo](https://github.com/amosmachora/daraja-kit-docs)
 
-Thank you for contributing to React Daraja! 🚀
+Thank you for contributing to Daraja Kit! 🚀
