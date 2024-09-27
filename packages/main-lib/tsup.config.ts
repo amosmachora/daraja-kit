@@ -2,11 +2,9 @@ import { defineConfig } from "tsup";
 
 export default defineConfig({
   entry: [
-    // included
     "src",
     "src/next",
     "src/react",
-    // not-included
     "!src/wrapper-fns/**",
     "!src/types/**",
     "!/src/util/**",
