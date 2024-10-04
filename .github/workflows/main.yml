@@ -17,5 +17,5 @@ jobs:
           node-version: 20.x
           cache: "pnpm"
 
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run lint && pnpm run build
+      - run: pnpm install --frozen-lockfile --filter daraja-kit
+      - run: pnpm run lint && pnpm --filter daraja-kit run build
