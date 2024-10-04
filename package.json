@@ -1,0 +1,24 @@
+{
+  "name": "daraja-kit-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Monorepo for Daraja Kit and Docs",
+  "scripts": {
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test"
+  },
+  "workspaces": [
+    "packages/main-lib",
+    "packages/docs-app"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amosmachora/daraja-kit.git"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "@changesets/cli": "^2.27.1"
+  },
+  "dependencies": {}
+}
