@@ -6,7 +6,8 @@
   "scripts": {
     "build": "pnpm -r build",
     "lint": "pnpm -r lint",
-    "test": "pnpm -r test"
+    "test": "pnpm -r test",
+    "release": "pnpm run build && changeset publish"
   },
   "repository": {
     "type": "git",
