@@ -10,7 +10,7 @@
   },
   "workspaces": [
     "packages/main-lib",
-    "packages/docs-app"
+    "packages/docs"
   ],
   "repository": {
     "type": "git",
