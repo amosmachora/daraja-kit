@@ -1,4 +1,4 @@
-# React Daraja
+# Daraja Kit
 
 Improving the Developer Experience of using the Safaricom daraja API.
 
@@ -6,11 +6,11 @@ Improving the Developer Experience of using the Safaricom daraja API.
 
 # About
 
-React Daraja is a typesafe Javascript library designed to simplify interactions with the Safaricom Daraja API. This library is suitable for both Node.js and React environments, allowing developers to seamlessly integrate M-Pesa payments into their applications.
+Daraja Kit is a typesafe Javascript library designed to simplify interactions with the Safaricom Daraja API. This library is suitable for both Node.js and React environments, allowing developers to seamlessly integrate M-Pesa payments into their applications.
 
 ## Installation
 
-To install React Daraja, run the following command in your project's terminal:
+To install Daraja Kit, run the following command in your project's terminal:
 
 ```bash
   npm install daraja-kit
@@ -50,7 +50,7 @@ The library throws errors if any of this values are missing from your .env file.
 
 ## Compatibility
 
-React Daraja is compatible with Node.js and React environments. It provides a simple interface for initiating M-Pesa transactions using the Safaricom Daraja API.
+Daraja Kit is compatible with Node.js and React environments. It provides a simple interface for initiating M-Pesa transactions using the Safaricom Daraja API.
 
 Some APIs are exclusively for Node Environments and some are just React Components so are only used in react.
 

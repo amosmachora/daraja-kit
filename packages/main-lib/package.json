@@ -1,0 +1,63 @@
+{
+  "name": "daraja-kit",
+  "version": "1.0.3",
+  "description": "A node and react library for improving the dx of integrating with Safaricom`s daraja APIs",
+  "main": "dist/index.js",
+  "module": "dist/index.cjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "test",
+    "build": "tsup",
+    "lint": "tsc",
+    "release": "pnpm run build && changeset publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amosmachora/daraja-kit.git"
+  },
+  "keywords": [
+    "daraja-kit",
+    "daraja",
+    "daraja2.0",
+    "safaricom"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "author": "Amos Machora",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amosmachora/daraja-kit/issues"
+  },
+  "homepage": "https://github.com/amosmachora/daraja-kit#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@types/memory-cache": "^0.2.5",
+    "axios": "^1.5.1",
+    "base-64": "^1.0.0",
+    "memory-cache": "^0.2.0",
+    "tailwind-merge": "^2.2.0"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "@types/base-64": "^1.0.0",
+    "@types/node": "^20.8.0",
+    "@types/react": "^18.2.17",
+    "css-loader": "^6.8.1",
+    "postcss-loader": "^7.3.3",
+    "style-loader": "^3.3.3",
+    "tailwindcss": "^3.3.3",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  }
+}
