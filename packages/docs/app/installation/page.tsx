@@ -49,6 +49,12 @@ const Page = () => {
             <CopyPastableSpan text="174379" />
           </p>
           <p>
+            <CopyPastableSpan text="MPESA_TILL_OR_PAYBILL_NO" />: Your M-Pesa
+            business short code. For Sandbox use the code{" "}
+            <CopyPastableSpan text="174379" />. Sometimes in prod it can be your
+            business short code. Just be sure to check your mpesa portal in prod
+          </p>
+          <p>
             <CopyPastableSpan text="MPESA_TRANSACTION_TYPE" /> : Set the
             transaction type, either{" "}
             <CopyPastableSpan text="CustomerPayBillOnline" /> or
