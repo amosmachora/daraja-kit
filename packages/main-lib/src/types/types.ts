@@ -309,6 +309,43 @@ export interface STKPushResponse {
 }
 
 /**
+ * This is the Amount transacted normally a numeric value. Money that the customer pays to the Shortcode.
+ * Only whole numbers are supported.
+ * @type {string}
+ * @example "10"
+ */
+type AmountItem = "Amount";
+
+/**
+ * This is the unique M-PESA transaction ID for the payment request.
+ * The same value is sent to the customer by SMS upon successful processing.
+ * @type {string}
+ * @example "LHG31AA5TX"
+ */
+type MpesaReceiptNumber = "MpesaReceiptNumber";
+
+/**
+ * This is the Balance of the account for the shortcode used as partyB.
+ * @type {number}
+ * @example 32009.9
+ */
+type Balance = number;
+
+/**
+ * This is a timestamp that represents the date and time that the transaction was completed in the format YYYYMMDDHHmmss.
+ * @type {string}
+ * @example "20170827163400"
+ */
+type TransactionDate = "TransactionDate";
+
+/**
+ * This is the number of the customer who made the payment.
+ * @type {string}
+ * @example "0722000000"
+ */
+type PhoneNumberItem = "PhoneNumber";
+
+/**
  * Results Parameter Description
  * @interface STKPushSuccessfulCallbackBody
  */
@@ -362,41 +399,8 @@ export interface STKPushSuccessfulCallbackBody {
        */
       CallbackMetadata: {
         Item: {
-          /**
-           * This is the Amount that was transacted.
-           * @type {number}
-           * @example 10500.5
-           */
-          Amount?: number;
-
-          /**
-           * This is the unique M-PESA transaction ID for the payment request.
-           * The same value is sent to the customer by SMS upon successful processing.
-           * @type {string}
-           * @example "LHG31AA5TX"
-           */
-          MpesaReceiptNumber?: string;
-
-          /**
-           * This is the Balance of the account for the shortcode used as partyB.
-           * @type {number}
-           * @example 32009.9
-           */
-          Balance?: number;
-
-          /**
-           * This is a timestamp that represents the date and time that the transaction was completed in the format YYYYMMDDHHmmss.
-           * @type {string}
-           * @example "20170827163400"
-           */
-          TransactionDate?: string;
-
-          /**
-           * This is the number of the customer who made the payment.
-           * @type {string}
-           * @example "0722000000"
-           */
-          PhoneNumber?: string;
+          Name: AmountItem | MpesaReceiptNumber | TransactionDate | PhoneNumber;
+          Value: string | number;
         }[];
       };
     };

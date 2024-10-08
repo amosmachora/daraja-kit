@@ -23,6 +23,11 @@ export const BUSINESS_SHORT_CODE = assertValue(
   "Missing environment variable: MPESA_BUSINESS_SHORT_CODE"
 );
 
+export const MPESA_TILL_OR_PAYBILL_NO = assertValue(
+  process.env.MPESA_TILL_OR_PAYBILL_NO,
+  "Missing environment variable: MPESA_TILL_OR_PAYBILL_NO"
+);
+
 export const MPESA_TRANSACTION_TYPE = assertValue(
   process.env.MPESA_TRANSACTION_TYPE,
   "Missing environment variable: MPESA_TRANSACTION_TYPE"
