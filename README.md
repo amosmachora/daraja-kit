@@ -34,6 +34,8 @@ Before using the library, make sure to set up the required environment variables
 
 - **MPESA_BUSINESS_SHORT_CODE**: Your M-Pesa business short code. For Sandbox use the code **174379**
 
+- **MPESA_TILL_OR_PAYBILL_NO**: Your M-Pesa till or paybill number. For Sandbox use 174379. Sometimes you can use your shortcode in prod but if you run into errors find the correct one in your portal.
+
 - **MPESA_TRANSACTION_TYPE**: Set the transaction type, either "CustomerPayBillOnline" or "CustomerBuyGoodsOnline."
 
 - **MPESA_API_PASS_KEY**: Your M-Pesa API pass key. For sandbox use **bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919**

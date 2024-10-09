@@ -7,7 +7,7 @@ import { QRCodeDisplay, ScannableQrParams } from "daraja-kit";
 export const QrCode = async () => {
   const nextJSCodeExample = `
     import React from "react";
-    import { QRCodeDisplay } from "daraja-kit";
+    import { QRCodeDisplay } from "daraja-kit/next";
     import { ScannableQrParams } from "daraja-kit";
     import { BUSINESS_SHORT_CODE } from "daraja-kit";
 
@@ -67,7 +67,7 @@ export const QrCode = async () => {
 
   const frontendVanillaReactCode = `
     import React, { useEffect, useState } from "react";
-    import { QRCodeDisplayReact } from "daraja-kit";
+    import { QRCodeDisplayReact } from "daraja-kit/react";
     import axios from "axios";
 
     const VanillaReactQRCodeExample = () => {
@@ -128,10 +128,10 @@ export const QrCode = async () => {
       <CodeBlockWrapper code={nextJSCodeExample} />
       <div className="mt-5">
         Now if you use vanilla react i.e create-react-app or vite maybe you can
-        import <CopyPastableSpan text="QRCodeDisplayReact" /> from react but you
-        have to fetch the QRString yourself from your backend. For that use case
-        here is how you might fetch the string in your node backend or next api
-        route.
+        import <CopyPastableSpan text="QRCodeDisplayReact" /> from
+        daraja-kit/react but you have to fetch the QRString yourself from your
+        backend. For that use case here is how you might fetch the string in
+        your node backend or next api route.
       </div>
       <CodeBlockWrapper code={backendQRCode} />
       <p className="mt-5">
