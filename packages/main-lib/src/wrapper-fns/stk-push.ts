@@ -10,7 +10,13 @@ import {
   TransactionType,
 } from "../types/types";
 import { generateTimestamp, generatePassword } from "../util/utils";
-import { BASE_URL, BUSINESS_SHORT_CODE, ENVIRONMENT, PASSKEY } from "../env";
+import {
+  BASE_URL,
+  BUSINESS_SHORT_CODE,
+  ENVIRONMENT,
+  MPESA_TILL_OR_PAYBILL_NO,
+  PASSKEY,
+} from "../env";
 import { generateAccessToken } from "./access-token";
 
 export type STKPushRequestParam = {
@@ -35,7 +41,7 @@ export const stkPushRequest = async ({
 
     const stkPushBody: STKPushBody = {
       BusinessShortCode: BUSINESS_SHORT_CODE!,
-      PartyB: BUSINESS_SHORT_CODE!,
+      PartyB: MPESA_TILL_OR_PAYBILL_NO!,
       Timestamp: timestamp,
       Password: password,
       PartyA: phoneNumber,

@@ -15,11 +15,11 @@ export default function Home() {
         alt="maple"
       />
       <p className="mt-5">
-        Daraja Kit is a typesafe Javascript library designed to simplify
-        interactions with the Safaricom Daraja API. This library is suitable for
-        both Node.js and React environments, allowing developers to seamlessly
-        integrate M-Pesa payments into their applications in an efficient,
-        modern and stress free manner.
+        Daraja Kit is a javascript library designed to simplify interactions
+        with the Safaricom Daraja API. This library is majorly for NodeJS
+        environment although there exists two utility functions for react and
+        nextjs, allowing developers to seamlessly integrate M-Pesa payments into
+        their applications in an efficient, modern and stress free manner.
       </p>
       <NextPage nextHref="installation" />
       <SmoothScroll />
