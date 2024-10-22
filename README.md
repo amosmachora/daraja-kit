@@ -44,7 +44,6 @@ The library throws errors if any of this values are missing from your .env file.
 
 ## Benefits
 
-- Cached access tokens to minimize network requests and improve performance.
 - Way simpler API over using daraja on your own.
 - Open source!
 - Slow integration. You don`t have to hot swap this library. You can easily integrate it to your app.
