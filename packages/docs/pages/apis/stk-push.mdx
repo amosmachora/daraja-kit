@@ -1,0 +1,63 @@
+# STK Push
+
+The library exports a function `stkPushRequest` that takes an object as a parameter. the type of the object is STKPushRequestParam. You can use the type to provide you with intellisense as you build out the object.
+
+Here is an example of how you can make a request in node .
+
+```tsx copy
+import { stkPushRequest, STKPushRequestParam } from "daraja-kit";
+
+const myReqObj: STKPushRequestParam = {
+  phoneNumber: "254719428019",
+  amount: "100",
+  callbackURL: "https://example.com/api/stk-push-callback",
+  transactionDesc: "Payment for your service",
+  accountReference: "user123@example.com",
+};
+
+const makeSTKPushRequest = async () => {
+  try {
+    const response = await stkPushRequest(myReqObj);
+    console.log("STK Push Request Successful:", response);
+  } catch (error) {
+    console.error("Error:", error.message);
+  }
+};
+
+makeSTKPushRequest();
+```
+
+The account reference param i have found to be required when using the api. If you don`t have an account reference or you don`t need it you might just include a random non-empty string.
+
+## Callbacks
+
+Daraja API sends the result of the STKPush Request after processing to the callback url you sent when making the request.
+
+The library exports two types `STKPushSuccessfulCallbackBody` and `STKPushErrorCallbackBody` that you can use to when processing daraja responses. Here is an example of how you can use the types in NextJS
+
+```tsx copy
+import {
+  STKPushErrorCallbackBody,
+  STKPushSuccessfulCallbackBody,
+} from "daraja-kit";
+import { NextRequest, NextResponse } from "next/server";
+
+const POST = async (req: NextRequest, res: NextResponse) => {
+  const receivedResponse:
+    | STKPushSuccessfulCallbackBody
+    | STKPushErrorCallbackBody = req.body;
+
+  let successObj: STKPushSuccessfulCallbackBody;
+  let errorObj: STKPushErrorCallbackBody;
+
+  if (receivedResponse.Body.stkCallback.ResultCode === 0) {
+    successObj = receivedResponse;
+    //do something
+  } else {
+    errorObj = receivedResponse;
+    //do something
+  }
+  //the below response doesn't matter but nextjs requires you to return something from Api route handlers
+  return NextResponse.json({ received: true });
+};
+```

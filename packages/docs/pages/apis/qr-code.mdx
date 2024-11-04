@@ -1,0 +1,101 @@
+# QR Code
+
+The library exports three QRCode helpers. Lets start with a NextJS example. You can import `QRCodeDisplay` from the library to display a QRcode on your website that people will scan to pay. Example
+
+```tsx copy
+import React from "react";
+import { QRCodeDisplay } from "daraja-kit/next";
+import { ScannableQrParams } from "daraja-kit";
+import { BUSINESS_SHORT_CODE } from "daraja-kit";
+
+export const QRCodeExample = () => {
+  const qrCodeParams: ScannableQrParams = {
+    Amount: 100,
+    MerchantName: "Daraja Kit docs",
+    RefNo: "REF100",
+    Size: "100",
+    TrxCode: "PB",
+  };
+
+  return (
+    <>
+      <div className="w-[100px] aspect-square mt-5 mx-auto">
+        <QRCodeDisplay scannableQRParams={qrCodeParams} />
+      </div>
+    </>
+  );
+};
+```
+
+Now if you use vanilla react i.e `create-react-app` or vite maybe you can import `QRCodeDisplayReact` from `daraja-kit/react` but you have to fetch the QRString yourself from your backend. For that use case here is how you might fetch the string in your node backend or next api route.
+
+```tsx copy
+import { NextRequest, NextResponse } from "next/server";
+import { fetchQrCode } from "daraja-kit";
+import { BUSINESS_SHORT_CODE } from "daraja-kit";
+import { ScannableQrParams } from "daraja-kit";
+
+export const GET = async (req: NextRequest, res: NextResponse) => {
+  const scannableQRParams: ScannableQrParams = {
+    Amount: 100,
+    MerchantName: "KISS KISS Adventures",
+    RefNo: "Your REF NO",
+    Size: "100", //square pixels,
+    TrxCode: "BG", //for buy goods. others are "BG" | "WA" | "PB" | "SM" | "SB",
+  };
+
+  try {
+    const { QRCode } = await fetchQrCode(scannableQRParams);
+
+    return NextResponse.json({ data: QRCode }, { status: 200 });
+  } catch (err: any) {
+    console.error(err);
+
+    return NextResponse.json(
+      {
+        message: "An error occurred",
+      },
+      {
+        status: 500,
+      }
+    );
+  }
+};
+```
+
+## rendering the QRCode
+
+After fetching your QRCode in your backend you can then use the `QRCodeDisplayReact` from `daraja-kit/react` to display your QRCode . Example
+
+```tsx copy
+import React, { useEffect, useState } from "react";
+import { QRCodeDisplayReact } from "daraja-kit/react";
+import axios from "axios";
+
+const VanillaReactQRCodeExample = () => {
+  const [qrString, setQrString] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("your backend route")
+      .then((res) => setQrString(res.data.QRCode))
+      .catch((err) => {
+        //handle errors here
+      });
+  }, []);
+
+  return (
+    <>
+      {qrString ? (
+        <div className="w-[100px] aspect-square mt-5 mx-auto">
+          <QRCodeDisplayReact qrString={qrString} />
+        </div>
+      ) : (
+        "show loading spinner or something"
+      )}
+    </>
+  );
+};
+
+export default VanillaReactQRCodeExample;
+```
