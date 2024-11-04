@@ -1,13 +1,23 @@
-# Daraja Kit Docs
+# Nextra Docs Template 
 
-The official documentation website of the [Daraja Kit library](https://github.com/amosmachora/daraja-kit).
+This is a template for creating documentation with [Nextra](https://nextra.site).
 
-![image info](./public/full-logo.png)
+[**Live Demo →**](https://nextra-docs-template.vercel.app)
 
-# About
+[![](.github/screenshot.png)](https://nextra-docs-template.vercel.app)
 
-Daraja Kit is a typesafe Javascript library designed to simplify interactions with the Safaricom Daraja API. This library is suitable for both Node.js and React environments, allowing developers to seamlessly integrate M-Pesa payments into their applications.
+## Quick Start
 
-This repo is a NextJS project that defines the usage , guides amd overall API of the Daraja Kit repo.
+Click the button to clone this repository and deploy it on Vercel:
 
-To contribute just fork your copy of this repo and submit a PR.
+[![](https://vercel.com/button)](https://vercel.com/new/clone?s=https%3A%2F%2Fgithub.com%2Fshuding%2Fnextra-docs-template&showOptionalTeamCreation=false)
+
+## Local Development
+
+First, run `pnpm i` to install the dependencies.
+
+Then, run `pnpm dev` to start the development server and visit localhost:3000.
+
+## License
+
+This project is licensed under the MIT License.

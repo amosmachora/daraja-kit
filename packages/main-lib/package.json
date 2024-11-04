@@ -18,8 +18,8 @@
   "keywords": [
     "daraja-kit",
     "daraja",
-    "daraja2.0",
-    "safaricom"
+    "safaricom",
+    "mpesa"
   ],
   "publishConfig": {
     "access": "public"

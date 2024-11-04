@@ -1,0 +1,23 @@
+# Installation
+
+In the directory containing package.json, run your package manager`s install command:
+
+```bash copy
+npm install daraja-kit
+```
+
+Before using the library, make sure to set up the required environment variables in the `.env` file. These variables include:
+
+- **ENVIRONMENT**: Set the environment to either `production` or `development`.
+- **MPESA_CONSUMER_KEY**: Consumer Key obtained from Safaricom Daraja.
+- **MPESA_CONSUMER_SECRET**: Consumer Secret obtained from Safaricom Daraja.
+- **MPESA_BUSINESS_SHORT_CODE**: Your M-Pesa business short code. For Sandbox, use the code `174379`.
+- **MPESA_TILL_OR_PAYBILL_NO**: Your M-Pesa business short code. For Sandbox, use the code `174379`. Sometimes, in production, it can be your business short code. Be sure to check your M-Pesa portal in production.
+- **MPESA_TRANSACTION_TYPE**: Set the transaction type to either `CustomerPayBillOnline` or `CustomerBuyGoodsOnline`.
+- **MPESA_API_PASS_KEY**: Your M-Pesa API pass key. For Sandbox, use `bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919`.
+
+The library throws errors if any of these values are missing from your `.env` file.
+
+### Basic Usage
+
+The library consists of a collection of TypeScript functions, types, and some React components. To use them, simply import the function you need from the library and use it in your app.
