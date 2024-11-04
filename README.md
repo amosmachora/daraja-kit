@@ -10,7 +10,6 @@ Daraja Kit is a typesafe Javascript library designed to simplify interactions wi
 
 # Benefits
 
-- Cached access tokens to minimize network requests and improve performance.
 - Way simpler API over using daraja on your own.
 - Open source!
 - Slow integration. You don`t have to hot swap this library. You can easily integrate it to your app.
